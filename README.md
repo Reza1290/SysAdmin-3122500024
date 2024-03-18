@@ -3,7 +3,7 @@
 | ------| -----|
 | [TUGAS 1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS1.md) |  _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS1.md)_ |
 | [TUGAS 2](#tugas-2) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_2/README.md)_ , _[MARP CLICK](TUGAS_2/PPT_SYSADMIN.md)_, _[PDF MARP](TUGAS_2/PPT_SYSADMIN.pdf)_|
-| [TUGAS 2](#tugas-3) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/README.md)_|
+| [TUGAS 3](#tugas-3) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/README.md)_|
 
 # KELOMPOK 2
 
@@ -53,18 +53,18 @@ __Pastikan__ menggunakan ``sudo`` untuk menjalankan perintah berikut (root)
 
 Mengubah Repository Apt (pastikan gunakan sudo)
 
-![alt text](Tugas_3/assets/1.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/1.png)
 
 setelah melakukan update dan upgrade untuk depedency
 
 Kita bisa install aplikasi menggunakan Aplikasi Software Bawaan
-![alt text](Tugas_3/assets/package/image.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image.png)
 
 
 atau menggunakan KDE Installer, 
 
-![alt text](Tugas_3/assets/package/image-1.png)
-![alt text](Tugas_3/assets/package/image-2.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-1.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-2.png)
 
 Informasi lengkap tentang Package Bisa diakses melalui link berikut :
 [kde-full](https://wiki.debian.org/KDE#KDE.27s_software_in_Debian)
@@ -73,19 +73,19 @@ Informasi lengkap tentang Package Bisa diakses melalui link berikut :
 
 ### Melihat Storage Yang terpakai di Linux Menggunakan TERMINAL
 
-![ss1](Tugas_3/assets/861_1.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_1.png)
 ### Membuat daftar Directory, diurutkan dari yang terbesar ke yang terkecil
 Melihat isi direktori dengan perintah du dan sort (satuan megabyte):
 
-![ss1](Tugas_3/assets/861_2.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_2.png)
 ### NCurses Disk Usage (ncdu)
 Untuk menganalisis ruang disk dalam mode konsol dengan menggunakan perintah ncdu.
 
-![ss1](Tugas_3/assets/861_3.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_3.png)
 ### baobab
 Digunakan untuk menganalisa ruang pada disk dengan tampilan grafis.
 
-![ss1](Tugas_3/assets/861_4.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_4.png)
 ### Membersihkan Paket
 #### Apt/aptitude/dpkg 
  Manajer paket Debian yang biasa digunakan. Saat menginstal sebuah paket, file sumber arsip/debnya disimpan di sistem pada folder /var/cache/apt/archives/ untuk memungkinkan kemungkinan instalasi ulang tanpa koneksi Internet. 
@@ -94,36 +94,36 @@ Digunakan untuk menganalisa ruang pada disk dengan tampilan grafis.
 
 Setelah cache dari paket yang diinstal dibersihkan, Kita juga dapat menghapus paket yang tidak berguna dari sistem, serta file konfigurasi. Peringatan! Ingatlah untuk memeriksa dengan cermat daftar paket yang direncanakan untuk dihapus, sebelum menerima operasi:
 
-![ss1](Tugas_3/assets/862_1.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_1.png)
 
 Jika Anda telah mengupgrade sistem Anda, ada kemungkinan beberapa paket tidak lagi tersedia di repositori baru (paket tersebut sudah usang). Untuk membuat daftar dan menghapus paket-paket ini, gunakan apt dan periksa dengan cermat daftar paket yang direncanakan untuk dihapus:
 
-![ss1](Tugas_3/assets/862_2.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_2.png)
 ### 
 Terakhir, untuk membuat daftar dan membersihkan file konfigurasi yang tetap ada meskipun aplikasi telah dihapus, gunakan perintah berikut :
 
-![ss1](Tugas_3/assets/862_4.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_4.png)
 #### deborphan 
 Mencantumkan paket-paket yang diadopsi pada sistem : paket-paket yang tidak bergantung pada paket lain. 
 
 Ingatlah untuk memeriksa dengan cermat daftar paket yang direncanakan untuk dihapus, sebelum menjalankan operasi.
 
-![ss1](Tugas_3/assets/862_5.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_5.png)
 ### Mengosongkan trash-bin
 Tiga trash-bin (wastebasket) yang berbeda harus dipertimbangkan:
 
 #### trash-bin user
 Anda dapat mengosongkannya dengan system file manager atau dengan perintah :
 
-![ss1](Tugas_3/assets/863.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/863.png)
 #### trash-bin admin
 Untuk mengosongkannya dengan cara yang benar, gunakan terminal dalam mode administrator:
 
-![ss1](Tugas_3/assets/864.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/864.png)
 #### trash-bin eksternal
 biasanya diberi nama '/media/(loginname)/your_disk/.Trash_1000'.
 
-![ss1](Tugas_3/assets/865.png)
+![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/865.png)
 
 
 ## Menginstall Package EXTERNAL Extensi .deb
@@ -132,52 +132,52 @@ biasanya diberi nama '/media/(loginname)/your_disk/.Trash_1000'.
 
 Kita dapat menginstall package External (.deb) menggunakan aplikasi Gdebi yang dapat diinstall dengan cara berikut.
 
-![alt text](Tugas_3/assets/image-3.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/image-3.png)
 
 
 Sekarang kita coba melakukan installasi untuk paket dari aplikasi VSCODE
 
-![alt text](Tugas_3/assets/package/image-3.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-3.png)
 
 pastikan paket berextensi .deb
 
-![alt text](Tugas_3/assets/package/image-4.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-4.png)
 
 
 Langkah-Langkah :
 1. Buka Gdebi
 2. Buka File .deb
 
-![alt text](Tugas_3/assets/package/image-5.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-5.png)
 
 3. Disini jika file sudah terpilih kita dapat melihat detail paketnya
 
-![alt text](Tugas_3/assets/package/image-6.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-6.png)
 
 4. Paket akan dipasang
 
-![alt text](Tugas_3/assets/package/image-7.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-7.png)
 
 5. paket selesai diinstall
 
-![alt text](Tugas_3/assets/package/image-8.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-8.png)
 
-![alt text](Tugas_3/assets/package/image-9.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-9.png)
 
 6. cara remove package
 
-![alt text](Tugas_3/assets/package/image-10.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-10.png)
 
 #### Menggunakan Terminal (dpkg command)
 
 1. Buka terminal    
 
-![alt text](Tugas_3/assets/package/image-11.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-11.png)
 
 2. gunakan dpkg -i namapaket.deb untuk memasang
 
 3. untuk melakukan uninstall gunakan dpkg --purge namaapp
-![alt text](Tugas_3/assets/package/image-12.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-12.png)
 
 
 
@@ -219,25 +219,25 @@ Mengatur Subnet pada Mikrotik
 5. Connect pada physical address (MAC) yang ada di layar winbox. Dengan cara mengklik MAC address kemudian klik connect. Jika terdapat pesan error, pergi ke tools, pilih legacy mode, lakukan connect kembali. 
 6. Nantinya akan muncul pesan configuration, pilih remove configuration.
 7. Pertama-tama untuk mengecek level mikrotik, cari 'System' di sidebar dan pilih License. Mikrotik yang digunakan memiliki level 5. 
-![alt text](Tugas_3/assets/mikrotik/image-4.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-4.png)
 8. Untuk menambahkan alamat IP, pergi ke sidebar 'IP' dan pilih 'Address List'. Klik tanda plus berwarna biru di sebelah kiri atas. Masukkan alamat IP 192.168.88.2/24, network 192.168.88.0, dan interface di ether1.
-![alt text](Tugas_3/assets/mikrotik/image-3.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-3.png)
 9. Buka terminal baru dan jalankan perintah 'ping 192.168.88.254'. Pastikan berhasil melakukan ping ke IP tersebut.
-![alt text](Tugas_3/assets/mikrotik/image-2.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-2.png)
 10. Buka 'Bridge' dari sidebar dan klik tanda plus untuk menambahkan bridge baru. Berikan nama 'bridge1' dan klik apply.
-![alt text](Tugas_3/assets/mikrotik/image-6.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-6.png)
 11. Pindah ke tab Ports, klik tanda plus. Kemudian pada Bridge Port, setting interface di ether2 dan Bridge di bridge1. Lakukan hal yang sama pada ether3, ether4, dan ether5.	
-![alt text](Tugas_3/assets/mikrotik/image-5.png)
-![alt text](Tugas_3/assets/mikrotik/image-1.png)	
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-5.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-1.png)	
 12. Tambahkan ether2 sebagai address baru. Masukkan address 192.168.2.1/24 dan network 192.168.2.0, klik apply.
-![alt text](Tugas_3/assets/mikrotik/image-10.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-10.png)
 13. Setting gateway dari sidebar 'IP', kemudian pilih route dan klik tanda plus untuk add route. Masukkan 0.0.0.0 untuk destination address dan 192.168.88.254 untuk gateway. Klik apply untuk menerapkan/menambahkan.
-![alt text](Tugas_3/assets/mikrotik/image-8.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-8.png)
 14. Setting DHCP dari sidebar 'IP', pilih DHCP server. Pada DHCP Setup pilih bridge1 di DHCP Server Interface, ubah Set Addresses menjadi 192.168.2.200-192.168.2.254. Jika sudah, hasil pengubahan disimpan.
-![alt text](Tugas_3/assets/mikrotik/image.png)
-![alt text](Tugas_3/assets/mikrotik/image-9.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-9.png)
 15. Buka IP pilih DNS. Tambahkan DNS dengan alamat PENS yaitu 202.9.85.4
 16. Terakhir setting firewall dari sidebar 'IP'. Pilih NAT dan klik tanda plus. Masukkan source addressnya 192.168.2.0/24 dan destination addressnya 0.0.0.0. Klik apply untuk menyimpan.
-![alt text](Tugas_3/assets/mikrotik/image-7.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-7.png)
 16. Mikrotik akan terhubung.
 
