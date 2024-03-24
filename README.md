@@ -24,8 +24,8 @@
 
 **Daftar Isi**
 - [Soal 1 (Pribadi)](#1-ekosistem-internet)
-- [Soal 2 (Pribadi)](#2-)
-- [Soal 3 (Kelompok(BIND9))](#3-Bind9)
+- [Soal 2 (Pribadi)](#2-dns-query)
+- [Soal 3 (Kelompok(BIND9))](#3-config-bind9)
 
 
 ## 1. Ekosistem Internet     
@@ -48,7 +48,8 @@ Lebih lanjut, standar badan seperti IETF (Internet Engineering Task Force) berta
 
 Secara keseluruhan, internet berfungsi sebagai ekosistem yang kompleks, dengan berbagai entitas dan protokol bekerja bersama untuk menyediakan konektivitas dan konten kepada pengguna.
 
-## Bagaimana Cara kerja dari iterative dan recursive dari DNS Query, ada 8 step, dari PC anda! misal akses detik.com
+## 2. DNS Query 
+### Bagaimana Cara kerja dari iterative dan recursive dari DNS Query, ada 8 step, dari PC anda! misal akses detik.com
 
 
 dilansir pada halaman https://www.cloudflare.com/learning/dns/what-is-dns/
