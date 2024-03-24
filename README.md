@@ -15,229 +15,126 @@
 
 -------
 
-# TUGAS 3
+# TUGAS 4
+# FILE LAINNYA
+
+[BACK](../README.md)
+
 
 **Daftar Isi**
-- [Soal 1 ](#1-installasi-paket)
-- [Soal 2 (Mikrotik)](#2-subneting-pada-mikrotik)
+- [Soal 1 (Pribadi)](#1-ekosistem-internet)
+- [Soal 2 (Pribadi)](#2-)
+- [Soal 3 (Kelompok(BIND9))](#3-Bind9)
 
 
+## 1. Ekosistem Internet     
 
-## 1. Installasi Paket
-### LINUX APT COMMAND 
+Dibawah ini adalah ekosistem internet menurut saya berdasarkan materi yang di sampaikan oleh bapak Ferry Astika [Akses Catatan Materi](/catatan.md)
 
-### FOR USER
+Internet adalah sebuah ekosistem yang berkesinambungan, di mana berbagai entitas seperti vendor konten, titik pertukaran internet (Internet Exchange Point), dan gTLD/ccTLDs (Global dan Country Code Top-Level Domains) bekerja sama untuk mengoptimalkan routing dan penyediaan konten. Pendidikan dan pembangunan kapasitas juga merupakan aspek penting dalam pemahaman tentang bagaimana internet berfungsi.
 
-|Command | Description |
-|--------|:------------|
-|``apt show foo``| Menampilkan informasi paket foo|
-|``apt search foo``| Mencari paket bernama/berkaitan foo|
-|``apt-cache policy foo``| Menampilkan versi tersedia paket foo|
+Secara teknis, internet dimulai dengan proses pemberian domain oleh ICANN (Internet Corporation for Assigned Names and Numbers), yang dilakukan melalui entitas seperti PANDI di Indonesia untuk domain berakhiran .id. Admin DNS kemudian menyediakan pemetaan lokasi nama ke alamat IP. Misalnya, saat sebuah komputer menggunakan nama host, itu diterjemahkan menjadi alamat IP melalui router.
 
+Sistem routing memastikan bahwa informasi mencapai tujuannya melalui serangkaian router, dengan setiap router memiliki alamat IP. Ada dua jenis alamat IP: IPv4 dan IPv6. Routing juga melibatkan pengaturan kebijakan router dan protokol routing.
 
-### Command apt untuk ADMINISTRATOR
+Komunikasi antar ISP (Internet Service Provider) melibatkan koneksi peering, di mana kebijakan seperti provider-customer, transit, dan settlement-free diterapkan. Ini mempengaruhi bagaimana data dipindahkan antar penyedia layanan, dengan tujuan meminimalkan latensi dan memaksimalkan efisiensi.
 
-__Pastikan__ menggunakan ``sudo`` untuk menjalankan perintah berikut (root)
+Penyedia konten juga memiliki kebijakan routing sendiri, seperti yang dilakukan oleh penyedia layanan seperti Google dan YouTube. Mereka menggunakan strategi seperti pemberian cache untuk mempercepat akses konten dan meningkatkan kepuasan pengguna.
 
-|Command | Description |
-|--------|:------------|
-|``apt update``| Update repository metadata (list versi dll)|
-|``apt install foo``| Memasang paket foo dan yang terkait|
-|``apt upgrade``| Menghapus versi lama paket|
-|``apt full-upgrade``| Mengupdate/hapus paket yang beneran terbaru|
-|``apt remove foo``| menghapus paket foo, tidak confignya|
+Sistem penamaan seperti DNS (Domain Name System) memungkinkan pengguna untuk mengakses situs web menggunakan nama domain alih-alih alamat IP. Ini melibatkan hirarki server DNS dan komponen seperti namespace, nameserver, dan resolver.
 
+Lebih lanjut, standar badan seperti IETF (Internet Engineering Task Force) bertanggung jawab atas standarisasi teknis dalam pengembangan internet, mencakup protokol pada layer 3 transport dan protokol lainnya.
 
+Secara keseluruhan, internet berfungsi sebagai ekosistem yang kompleks, dengan berbagai entitas dan protokol bekerja bersama untuk menyediakan konektivitas dan konten kepada pengguna.
 
-### HOW TO USE APT COMMAND
+## Bagaimana Cara kerja dari iterative dan recursive dari DNS Query, ada 8 step, dari PC anda! misal akses detik.com
 
-Mengubah Repository Apt (pastikan gunakan sudo)
 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/1.png)
+dilansir pada halaman https://www.cloudflare.com/learning/dns/what-is-dns/
 
-setelah melakukan update dan upgrade untuk depedency
 
-Kita bisa install aplikasi menggunakan Aplikasi Software Bawaan
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image.png)
+1. Pengguna memasukkan URL "detik.com" ke dalam browser web.
+2. browser mengirim permintaan DNS Query pertama ke resolver DNS lokal yang terhubung ke jaringan internet.
+3. Resolver DNS lokal tidak memiliki informasi tentang alamat IP untuk "detik.com", sehingga resolver memulai proses query.
+4. Langkah Iterative:
+   - Resolver DNS lokal membuat kueri pertama ke salah satu dari 13 root server global. Ini adalah langkah iteratif pertama.
+   - Root server merespons dengan informasi tentang server TLD (Top-Level Domain) yang bertanggung jawab atas ".com".
+5. Langkah Recursive:
+   - Resolver DNS lokal kemudian mengirimkan kueri ke server TLD yang bertanggung jawab atas ".com".
+   - Server TLD ".com" merespons dengan informasi tentang server DNS yang memiliki informasi tentang "detik.com".
+   - Resolver DNS lokal kemudian mengirimkan kueri ke server DNS yang disediakan oleh registrar domain detik.com.
+6. Server DNS detik.com merespons dengan alamat IP untuk detik.com.
+7. Resolver DNS lokal menerima alamat IP dari server DNS detik.com.
+8. Resolver DNS lokal meneruskan alamat IP ke browser.
 
+<br>
+<br>
 
-atau menggunakan KDE Installer, 
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/image.png)
+[Sumber](https://cf-assets.www.cloudflare.com/slt3lc6tev37/1NzaAqpEFGjqTZPAS02oNv/bf7b3f305d9c35bde5c5b93a519ba6d5/what_is_a_dns_server_dns_lookup.png)
 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-1.png)
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-2.png)
 
-Informasi lengkap tentang Package Bisa diakses melalui link berikut :
-[kde-full](https://wiki.debian.org/KDE#KDE.27s_software_in_Debian)
+#### Analogi
+Kita analogikan seperti ini, analogikan proses pencarian alamat situs web detik.com dengan mencari alamat rumah seseorang di kota yang tidak pernah Anda kunjungi sebelumnya.
 
+1. **Permintaan Awal:**
+   Anda ingin mengunjungi teman di kota yang tidak Anda kenal. Anda memiliki nama teman (detik.com) tetapi tidak tahu di mana dia tinggal (alamat IP).
 
+2. **Pertanyaan Pertama:**
+   Anda meminta petunjuk pertama kepada seseorang di kota tersebut. Mereka memberi tahu Anda untuk pergi ke pusat informasi kota (root server) karena mereka tidak tahu di mana alamat teman Anda secara langsung.
 
-### Melihat Storage Yang terpakai di Linux Menggunakan TERMINAL
+3. **Pusat Informasi Kota (Root Server):**
+   Di pusat informasi kota, petugas memberi tahu Anda bahwa Anda harus mencari di bagian yang bertanggung jawab untuk wilayah tersebut (TLD server).
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_1.png)
-### Membuat daftar Directory, diurutkan dari yang terbesar ke yang terkecil
-Melihat isi direktori dengan perintah du dan sort (satuan megabyte):
+4. **Wilayah (TLD Server):**
+   Anda pergi ke wilayah yang ditunjukkan oleh petugas, dan di sana Anda bertanya pada seseorang lagi. Mereka memberi tahu Anda untuk mencari di kantor polisi setempat (DNS server yang bertanggung jawab atas domain ".com").
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_2.png)
-### NCurses Disk Usage (ncdu)
-Untuk menganalisis ruang disk dalam mode konsol dengan menggunakan perintah ncdu.
+5. **Kantor Polisi (DNS Server .com):**
+   Di kantor polisi, petugas memberi tahu Anda bahwa Anda harus bertanya langsung ke keluarga teman Anda (DNS server yang bertanggung jawab atas domain detik.com).
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_3.png)
-### baobab
-Digunakan untuk menganalisa ruang pada disk dengan tampilan grafis.
+6. **Rumah Teman (DNS Server detik.com):**
+   Di rumah teman Anda, anggota keluarga memberi tahu Anda alamat lengkap teman Anda.
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/861_4.png)
-### Membersihkan Paket
-#### Apt/aptitude/dpkg 
- Manajer paket Debian yang biasa digunakan. Saat menginstal sebuah paket, file sumber arsip/debnya disimpan di sistem pada folder /var/cache/apt/archives/ untuk memungkinkan kemungkinan instalasi ulang tanpa koneksi Internet. 
- 
- Untuk membersihkan cache apt gunakan perintah apt clean.
+7. **Kembali ke Anda:**
+   Anda kembali dengan alamat lengkap yang diberikan oleh keluarga teman Anda.
 
-Setelah cache dari paket yang diinstal dibersihkan, Kita juga dapat menghapus paket yang tidak berguna dari sistem, serta file konfigurasi. Peringatan! Ingatlah untuk memeriksa dengan cermat daftar paket yang direncanakan untuk dihapus, sebelum menerima operasi:
+8. **Tiba di Rumah Teman:**
+   Anda mengunjungi teman Anda dengan menggunakan alamat yang Anda dapatkan dan tiba di rumahnya.
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_1.png)
 
-Jika Anda telah mengupgrade sistem Anda, ada kemungkinan beberapa paket tidak lagi tersedia di repositori baru (paket tersebut sudah usang). Untuk membuat daftar dan menghapus paket-paket ini, gunakan apt dan periksa dengan cermat daftar paket yang direncanakan untuk dihapus:
+## 3. Config BIND9
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_2.png)
-### 
-Terakhir, untuk membuat daftar dan membersihkan file konfigurasi yang tetap ada meskipun aplikasi telah dihapus, gunakan perintah berikut :
 
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_4.png)
-#### deborphan 
-Mencantumkan paket-paket yang diadopsi pada sistem : paket-paket yang tidak bergantung pada paket lain. 
-
-Ingatlah untuk memeriksa dengan cermat daftar paket yang direncanakan untuk dihapus, sebelum menjalankan operasi.
-
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/862_5.png)
-### Mengosongkan trash-bin
-Tiga trash-bin (wastebasket) yang berbeda harus dipertimbangkan:
-
-#### trash-bin user
-Anda dapat mengosongkannya dengan system file manager atau dengan perintah :
-
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/863.png)
-#### trash-bin admin
-Untuk mengosongkannya dengan cara yang benar, gunakan terminal dalam mode administrator:
-
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/864.png)
-#### trash-bin eksternal
-biasanya diberi nama '/media/(loginname)/your_disk/.Trash_1000'.
-
-![ss1](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/865.png)
-
-
-## Menginstall Package EXTERNAL Extensi .deb
-
-#### DEBI Application
-
-Kita dapat menginstall package External (.deb) menggunakan aplikasi Gdebi yang dapat diinstall dengan cara berikut.
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/image-3.png)
-
-
-Sekarang kita coba melakukan installasi untuk paket dari aplikasi VSCODE
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-3.png)
-
-pastikan paket berextensi .deb
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-4.png)
-
-
-Langkah-Langkah :
-1. Buka Gdebi
-2. Buka File .deb
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-5.png)
-
-3. Disini jika file sudah terpilih kita dapat melihat detail paketnya
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-6.png)
-
-4. Paket akan dipasang
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-7.png)
-
-5. paket selesai diinstall
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-8.png)
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-9.png)
-
-6. cara remove package
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-10.png)
-
-#### Menggunakan Terminal (dpkg command)
-
-1. Buka terminal    
-
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-11.png)
-
-2. gunakan dpkg -i namapaket.deb untuk memasang
-
-3. untuk melakukan uninstall gunakan dpkg --purge namaapp
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/package/image-12.png)
-
-
-
-
-
-
-
-
-## 2. Subneting Pada Mikrotik
-
-![alt text](image.png)
-
-```
-Router 6
-Network 192.168.88.0
-Int G0/1 192.168.88.254
-Subnet 255.255.255.0
-```
-
-```
-Router 5
-Network 192.168.88.0
-Int G0/0 192.168.88.2
-Int G0/1 192.168.2.1
-Subnet 255.255.255.0
-```
-
-
-```
-End Device ( DHCP )
-Ipv4 192.168.2.2 - 192.168.2.254
-```
-
-Mengatur Subnet pada Mikrotik
-1. Buka terminal pada komputer lab dan masukkan perintah ip addr.
-2. Lakukan reset configuration pada mikrotik hingga ip berubah kembali menjadi 192.168.88.102.
-3. Pasang kabel WLAN pada laptop anda.
-4. Pasang dan jalankan Winbox pada laptop anda. 
-5. Connect pada physical address (MAC) yang ada di layar winbox. Dengan cara mengklik MAC address kemudian klik connect. Jika terdapat pesan error, pergi ke tools, pilih legacy mode, lakukan connect kembali. 
-6. Nantinya akan muncul pesan configuration, pilih remove configuration.
-7. Pertama-tama untuk mengecek level mikrotik, cari 'System' di sidebar dan pilih License. Mikrotik yang digunakan memiliki level 5. 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-4.png)
-8. Untuk menambahkan alamat IP, pergi ke sidebar 'IP' dan pilih 'Address List'. Klik tanda plus berwarna biru di sebelah kiri atas. Masukkan alamat IP 192.168.88.2/24, network 192.168.88.0, dan interface di ether1.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-3.png)
-9. Buka terminal baru dan jalankan perintah 'ping 192.168.88.254'. Pastikan berhasil melakukan ping ke IP tersebut.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-2.png)
-10. Buka 'Bridge' dari sidebar dan klik tanda plus untuk menambahkan bridge baru. Berikan nama 'bridge1' dan klik apply.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-6.png)
-11. Pindah ke tab Ports, klik tanda plus. Kemudian pada Bridge Port, setting interface di ether2 dan Bridge di bridge1. Lakukan hal yang sama pada ether3, ether4, dan ether5.	
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-5.png)
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-1.png)	
-12. Tambahkan ether2 sebagai address baru. Masukkan address 192.168.2.1/24 dan network 192.168.2.0, klik apply.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-10.png)
-13. Setting gateway dari sidebar 'IP', kemudian pilih route dan klik tanda plus untuk add route. Masukkan 0.0.0.0 untuk destination address dan 192.168.88.254 untuk gateway. Klik apply untuk menerapkan/menambahkan.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-8.png)
-14. Setting DHCP dari sidebar 'IP', pilih DHCP server. Pada DHCP Setup pilih bridge1 di DHCP Server Interface, ubah Set Addresses menjadi 192.168.2.200-192.168.2.254. Jika sudah, hasil pengubahan disimpan.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image.png)
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-9.png)
-15. Buka IP pilih DNS. Tambahkan DNS dengan alamat PENS yaitu 202.9.85.4
-16. Terakhir setting firewall dari sidebar 'IP'. Pilih NAT dan klik tanda plus. Masukkan source addressnya 192.168.2.0/24 dan destination addressnya 0.0.0.0. Klik apply untuk menyimpan.
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_3/assets/mikrotik/image-7.png)
-16. Mikrotik akan terhubung.
-
+Link Tutorial Youtube : https://youtu.be/I1Y9bcQ3zY8
+1. lakukan instalasi bind9
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/ss.png)
+2. cek instalasi di /etc/bind
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image.png)
+3. cek konfigurasi utama bind di named.conf.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-1.png)
+4. Menambahkan ACL (access list), control, dan include 3 file.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-2.png)
+5. Buka named.conf.deafult-zones.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-3.png)
+6. Buka named.conf.option, mengisi provider dan listen-on. Listen ditambahkan sesuai kelompok masing-masing
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-4.png)
+7. Buka named.conf.local, untuk mengset atau konfigurasi zone file. Melakukan pengubahan zone sesuai nama kelompok.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-5.png)
+8. Lakukan sudo named-checkconf untuk mengeck pesan error. jika tidak ada pesan error yang keluar itu berarti konfigurasi yang dilakukan telah benar.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-9.png)
+9. Pergi ke arah configuration zone file. 
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-7.png)
+10. Masuk ke zone file pertama dan mengubah data di dalamnya.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-8.png)
+11. Masuk ke zone file kedua (.inv) untuk mengubah data seperti file sebelumnya.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-10.png)
+12. Jalankan sudo systemctl restart named untuk menjalankan sistem bind.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-11.png)
+13. Cek status bind apakah running atau tidak.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-15.png)
+14. Cek apakah port terbuka atau tidak.
+15. Gunakan perintah dig.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-14.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-12.png)
+16. Gunakan perintah nslookup.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-13.png)

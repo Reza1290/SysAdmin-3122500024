@@ -53,7 +53,7 @@ dilansir pada halaman https://www.cloudflare.com/learning/dns/what-is-dns/
 <br>
 <br>
 
-![alt text](image.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/image.png)
 [Sumber](https://cf-assets.www.cloudflare.com/slt3lc6tev37/1NzaAqpEFGjqTZPAS02oNv/bf7b3f305d9c35bde5c5b93a519ba6d5/what_is_a_dns_server_dns_lookup.png)
 
 
@@ -87,5 +87,37 @@ Kita analogikan seperti ini, analogikan proses pencarian alamat situs web detik.
 
 ## 3. Config BIND9
 
-Link Tutorial Youtube : https://youtu.be/I1Y9bcQ3zY8
 
+Link Tutorial Youtube : https://youtu.be/I1Y9bcQ3zY8
+1. lakukan instalasi bind9
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/ss.png)
+2. cek instalasi di /etc/bind
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image.png)
+3. cek konfigurasi utama bind di named.conf.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-1.png)
+4. Menambahkan ACL (access list), control, dan include 3 file.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-2.png)
+5. Buka named.conf.deafult-zones.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-3.png)
+6. Buka named.conf.option, mengisi provider dan listen-on. Listen ditambahkan sesuai kelompok masing-masing
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-4.png)
+7. Buka named.conf.local, untuk mengset atau konfigurasi zone file. Melakukan pengubahan zone sesuai nama kelompok.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-5.png)
+8. Lakukan sudo named-checkconf untuk mengeck pesan error. jika tidak ada pesan error yang keluar itu berarti konfigurasi yang dilakukan telah benar.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-9.png)
+9. Pergi ke arah configuration zone file. 
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-7.png)
+10. Masuk ke zone file pertama dan mengubah data di dalamnya.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-8.png)
+11. Masuk ke zone file kedua (.inv) untuk mengubah data seperti file sebelumnya.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-10.png)
+12. Jalankan sudo systemctl restart named untuk menjalankan sistem bind.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-11.png)
+13. Cek status bind apakah running atau tidak.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-15.png)
+14. Cek apakah port terbuka atau tidak.
+15. Gunakan perintah dig.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-14.png)
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-12.png)
+16. Gunakan perintah nslookup.
+![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/assets/image-13.png)
