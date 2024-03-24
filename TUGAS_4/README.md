@@ -4,10 +4,10 @@
 
 # TUGAS 4
 
-Daftar Isi
+**Daftar Isi**
 - [Soal 1 (Pribadi)](#1-ekosistem-internet)
-- [Soal 2 (Pribadi)](#2-)
-- [Soal 3 (Kelompok(BIND9))](#3-Bind9)
+- [Soal 2 (Pribadi)](#2-dns-query)
+- [Soal 3 (Kelompok(BIND9))](#3-config-bind9)
 
 
 ## 1. Ekosistem Internet     
