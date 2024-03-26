@@ -51,8 +51,23 @@ Secara keseluruhan, internet berfungsi sebagai ekosistem yang kompleks, dengan b
 ## 2. DNS Query 
 ### Bagaimana Cara kerja dari iterative dan recursive dari DNS Query, ada 8 step, dari PC anda! misal akses detik.com
 
+Berdasarkan Penjelesan materi oleh Bapak Ferry Astika
+Beberapa tahap dapat digambarkan seperti gambar dibawah ini
 
-dilansir pada halaman https://www.cloudflare.com/learning/dns/what-is-dns/
+![resolver drawio](https://github.com/Reza1290/SysAdmin-3122500024/assets/70069286/edcb30a8-b4d7-4568-a54e-093d21ffefe0)
+
+1. DNS Request IN A www.example.com pada Browser.
+2. kemudian Router 10.10.10.1 melakukan forward DNS request ke ns.pens.ac.id
+3. ns.pens.ac.id melakukan DNS Request Ke ROOT SERVER Untuk IN A www.example.com
+4. Kemudian Root server memberitahu bahwa hubungi .com atau DNS Reply .com IN A
+5. ns.pens.ac.id mendapat informasi dari root Server F bahwa .com IN A www.example.com maka pergi ke .com server
+6. .com Server IN NS example.com ( memberitahu bahwa Nameserver dari dns request itu adalah example.com ) dan dikembalikan ke ns.pens.ac.id
+7. ns.pens.ac.id menuju ns.example.com resolver menanyakan apakah punya www.example.com?
+8. kemudian ns.example.com memberikan resolve dari Dns berupa ip dari www.example.com yaitu 93.184.216.54 ke ns.pens.ac.id
+9. kemudian diteruskan ke server 10.10.10.1 dengan ip informasi yaitu 93.184.216.54
+10. client menerima hasil DNS Request dikarenakan IP telah diketahui.
+
+dilansir pada halaman https://www.cloudflare.com/learning/dns/what-is-dns/ yang saya rangkum
 
 
 1. Pengguna memasukkan URL "detik.com" ke dalam browser web.
