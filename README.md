@@ -205,4 +205,91 @@
 2. Pilih yang No Configuration ( kita config manual )
     > ![alt text](<Screenshot (1650).png>)
 
-3. 
+3. Copy file config /usr/share/postfix/main.cf.dist ke /etc/postfix/main.cf
+
+    > ![alt text](<Screenshot 2024-04-14 035106.png>)
+
+4. Ubah beberapa Konfigurasi pada file postfix main.cf
+
+    > ![alt text](<Screenshot (1651).png>)
+    > ![alt text](<Screenshot (1652).png>)
+    > ![alt text](<Screenshot (1653).png>)
+    > ![alt text](<Screenshot (1654).png>)
+    > ![alt text](<Screenshot (1655).png>)
+    > ![alt text](<Screenshot (1656).png>)
+    > ![alt text](<Screenshot (1657).png>)
+    > ![alt text](<Screenshot (1658).png>)
+    > ![alt text](<Screenshot (1659).png>)
+    > ![alt text](<Screenshot (1660).png>)
+    > ![alt text](<Screenshot (1661).png>)
+
+5. Tambahkan config anti spam
+    > ![alt text](<Screenshot (1662).png>)
+
+
+### F. Install DOVECOT (IMAP POP3)
+
+1. Gunakan Perintah berikut untuk installasi `sudo  apt -y install dovecot-core dovecot-pop3d dovecot-imapd`
+
+    > ![alt text](<Screenshot 2024-04-14 040547.png>)
+
+
+2. Ubah listen IP
+    > ![alt text](<Screenshot (1664).png>)
+
+3. Setting file auth   
+
+    > ![alt text](<Screenshot (1663).png>)
+
+4. Konfigurasi file mail
+
+    > ![alt text](<Screenshot (1665).png>)
+
+5. Terakhir tambahkan mode 0666, dan user,group postfix pada file master
+
+    > ![alt text](<Screenshot (1666).png>)
+
+6. Restart service, dan cek di netstat
+
+    > ![alt text](<Screenshot (1668).png>)
+
+
+Setelah beberapa paket terinstall seperti imap, pop3 kita akan coba melakukan test connection ke postfix
+
+1. dengan perintah `telnet mail.kelompok2.local`
+
+    > ![alt text](<Screenshot 2024-04-14 195925.png>)
+
+2. Coba test kirim ke user reza
+
+    > ![alt text](image-5.png)
+
+### G. DEBIAN EVOLUTION
+
+1. Buat User Terlebih dahulu disini kita buat user default kita di saya yaitu
+``user``
+
+    > Identitiy
+    > ![alt text](image-6.png)
+
+    > Recieve
+    > ![alt text](image-7.png)
+
+    > Sending ( Port 25 )
+    > ![alt text](image-8.png)
+
+2. user telah dibuat sekarang buat user lagi (dummy) untuk saya, ``reza`` dengan langkah yang sama.
+
+3. Mengirim pesan
+
+    > ![alt text](image-9.png)
+
+4. cek Inbox user `reza`
+
+    > ![alt text](image-11.png)
+
+    terdapat email dari user dan budi yang kita lakukan di telnet tadi!.
+    berhasil!.
+
+
+### H. ROUNDCUBE
