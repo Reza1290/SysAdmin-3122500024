@@ -12,6 +12,16 @@
 
 # MAIL SERVER DEBIAN 10, BIND9, POSTFIX, DOVECOT, Client Evolution, RoundCube.
 
+### Daftar Isi
+- [A. Persiapan](#a-persiapan)
+- [B. Setup NTP Server](#b-setup-ntp--network-time-protocol)
+- [C. Install WebServer Apache2](#c-install-web-server--apache2--php-fm)
+- [D. Install Database Server MariaDb](#d-install-database-server--mariadb-server)
+- [E. Install SMTP Sever Postfix](#e-install-postfix-mailserver-smtp-server)
+- [F. Install IMAP POP3 Dovecot](#f-install-dovecot-imap-pop3)
+- [G. Testing Dengan Debian Evolution](#g-debian-evolution)
+- [H. RoundCube Email Client](#h-roundcube)
+
 ### A. Persiapan
 
 1. Setup terlebih dahulu mail server pada konfigurasi zone sehingga dapat di resolve ```mail.kelompok2.local```
@@ -278,7 +288,8 @@ Setelah beberapa paket terinstall seperti imap, pop3 kita akan coba melakukan te
     > Sending ( Port 25 )
     > ![alt text](image-8.png)
 
-2. user telah dibuat sekarang buat user lagi (dummy) untuk saya, ``reza`` dengan langkah yang sama.
+2. user telah dibuat sekarang buat user lagi (dummy) untuk saya, ``reza`` dengan langkah yang sama. adduser terlebih dahulu
+    > ![alt text](<Screenshot (1672).png>)
 
 3. Mengirim pesan
 
@@ -293,3 +304,109 @@ Setelah beberapa paket terinstall seperti imap, pop3 kita akan coba melakukan te
 
 
 ### H. ROUNDCUBE
+
+1. Sebelum itu kita perlu melakukan Konfigurasi untuk user roundcube, tambahkan pada tabel db user
+
+    > ![alt text](image-12.png)
+
+2. Berikan full access
+
+    > ![alt text](image-13.png)
+    
+    Load
+    > ![alt text](image-14.png)
+
+3. Install Roundcube paket dengan perintah berikut
+
+    > ![alt text](image-15.png)
+
+4. Pilih Yes
+    > ![alt text](image-16.png)
+
+5. Masukkan password tadi ( 123 )
+
+    > ![alt text](image-17.png)
+
+6. Lakukan config pada file `/etc/roundcube/config.inc.php`
+
+7. Samakan dengan config berikut
+    > ![alt text](image-19.png)
+8. Kemudian konfigurasi file apache pada roundcube, uncomment line 3 dan hapus public_html path
+
+    > ![alt text](image-20.png)
+
+9. pada apache2 default conf tambahkan Servername untuk mail dan document root menjadi roundcube ``sudo nano /etc/apache2/sites-available/000-default.conf``, Servername mail.kelompok2.local DocumentRoot /var/lib/roundcube/
+    
+    > ![alt text](image-21.png)
+
+10. jalankan rekonfigurasi seperti berikut
+
+    > ![alt text](image-22.png)
+    
+    Ok
+
+    > ![alt text](image-24.png)
+
+    en_Us
+
+    > ![alt text](image-25.png)
+
+    Pilih Install ulang ( YES 
+    
+    > ![alt text](image-26.png)
+
+    Pilih TCP IP
+
+    > ![alt text](image-27.png)
+
+    Pilih localhost
+
+    > ![alt text](image-28.png)
+
+    Port 3306
+
+    > ![alt text](image-29.png)
+
+    Pilih native password
+
+    > ![alt text](image-30.png)
+
+    Database name default
+
+    > ![alt text](image-31.png)
+
+    Username default
+
+    > ![alt text](image-32.png)
+
+    Password 123
+
+    > ![alt text](image-33.png)
+
+    Admin root
+
+    > ![alt text](image-34.png)
+
+    Pilih webserver apache2
+
+    > ![alt text](image-35.png)
+
+    Restart dan keep curently installed
+
+11. Roundcube terinstall
+
+    > ![alt text](image-36.png)
+
+12. Login dengan user debian kita saya user > user, bisa kita lihat config evolution sudah terload pada roundcube saya
+
+    > ![alt text](image-37.png)
+
+13. Coba mengirim dari user ke Reza
+
+    > ![alt text](image-38.png)
+
+14. Login sebagai user `reza`
+
+    > ![alt text](image-39.png)
+    Email diterima
+
