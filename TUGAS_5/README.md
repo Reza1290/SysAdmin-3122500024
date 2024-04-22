@@ -20,7 +20,9 @@
 - [E. Install SMTP Sever Postfix](#e-install-postfix-mailserver-smtp-server)
 - [F. Install IMAP POP3 Dovecot](#f-install-dovecot-imap-pop3)
 - [G. Testing Dengan Debian Evolution](#g-debian-evolution)
-- [H. RoundCube Email Client](#h-roundcube)
+- [H. RoundCube Email Client](#h-roundcube)    
+###### Tambahan
+- [I. MailServer JARKOM C307 (Network)](#i-percobaan-mailserver-jaringan-jarkom-c307)
 
 ### A. Persiapan
 
@@ -235,6 +237,7 @@
 
 5. Tambahkan config anti spam
     > ![alt text](<assets/Screenshot (1662).png>)
+    > sudo newaliases
 
 
 ### F. Install DOVECOT (IMAP POP3)
@@ -410,3 +413,70 @@ Setelah beberapa paket terinstall seperti imap, pop3 kita akan coba melakukan te
     > ![alt text](assets/image-39.png)
     Email diterima
 
+### I. PERCOBAAN MAILSERVER JARINGAN JARKOM C307 
+
+
+1. Pastikan sudah terhubung dengan Ethernet Pada LAB JARKOM
+
+    > ![alt text](/assets2/g1.png)
+2. Lakukan Ping ke 1.1.1.1 pastikan sudah terhubung ke dns 1.1.1.1
+    > ![alt text](/assets2/image.png)
+
+3. Setting Virtual Box Ke Dalam **Network Bridge**
+
+    > settings/machine > Network 
+    >
+    > ![alt text](/assets2/image-1.png)
+
+4. Supaya DNS Kita dapat diresolve oleh kelompok lain lakukan Konfigurasi Berikut
+
+    > **Setting interfaces**
+    >
+    > ![alt text](/assets2/image-5.png)
+    >sudo nano /etc/network/interfaces
+
+    > **Setting named.conf**
+    >
+    > ![alt text](/assets2/image-3.png)
+    > sudo nano /etc/bind/named.conf.options
+
+    > **Setting resolv.conf**
+    >
+    > ![alt text](/assets2/image-4.png)
+    > sudo nano /etc/resolv.conf
+
+
+    Lakukan *sudo restart systemctl networking* Setelahnya
+
+5. Lakukan Ping Detik.com atau IP Kelompok lain disini 192.168.10.10
+
+    > ![alt text](/assets2/image-2.png)
+
+6. Buat DHCP Server Bridge Pada Aplikasi WINBOX
+
+    >   Connect Ke Server/Router Klik DHCP SETUP, Pilih Bridge Interface
+    >
+    >   ![alt text](</assets2/Screenshot 2024-04-22 161942.png>)
+
+    >   Next (Default)
+    >
+    > ![alt text](</assets2/Screenshot 2024-04-22 161951.png>)
+    > ![alt text](</assets2/Screenshot 2024-04-22 161958.png>)
+    > ![alt text](</assets2/Screenshot 2024-04-22 162005.png>)
+    >  Masukkan dns
+    > ![alt text](</assets2/Screenshot 2024-04-22 162024.png>)
+    > Default
+    > ![alt text](</assets2/Screenshot 2024-04-22 162030.png>)
+
+    >   ![alt text](</assets2/Screenshot 2024-04-22 161914.png>)
+
+7. Cek Mail Server
+
+    > ![alt text](/assets2/image-6.png)
+    > nslookup -q=MX kelompok2.local
+
+8. Buka Mail Server Kelompok Kita
+
+    > Lakukan Pengiriman Ke Kelompok Lainnya
+    >
+    > ![alt text](/assets2/image-7.png)
