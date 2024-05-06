@@ -13,8 +13,8 @@
 ## Daftar Isi
 - [A. Web Server and Web Browser Architecture](#a-web-server-and-web-browser-architecture)
 
-- [B. Containerized Web Server Using Docker]() `New `
-- [C. Apache2 + Dns Resolver + Docker Uptime Kuma Package]() `New `
+- [B. Containerized Web Server Using Docker](#b-containerized-web-server-using-docker) `New `
+- [C. Apache2 + Dns Resolver + Docker Uptime Kuma Package](#c-apache2--dns-resolver--docker-uptime-kuma-package) `New `
 
 # A. Web Server and Web Browser Architecture 
 
