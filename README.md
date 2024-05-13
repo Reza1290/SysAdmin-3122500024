@@ -65,6 +65,7 @@ Pada bab ini kita akan belajar melakukan Build Images dari source code dengan me
     `COPY . .` Melakukan Copy file sekarang ke WorkDir <br>
     `RUN yarn install --production` yarn dijalankan dengan perintah RUN <br>
     `CMD` Disini merupakan perintah yang dieksekusi diakhir biasanya berisi **starting up a server**
+    ##### here
 
 2. Lakukan Build Images
 
@@ -266,3 +267,118 @@ kita lakukn mounting database ke app dengan membuat sebuah volume
 
 
 # F. Using Bind Mounts
+
+presist data dapat disimpan kedalam volume, tetapi pada kasus tertentu kita harus tahu dimana letak dari data yang kita simpan, dengan `Bind Mounts` kita bisa mengatur letak dari data yang disimpan.
+
+### Starting Dev-Mode Container
+
+1. Hentikan semua docker-101 container
+2. Run command berikut
+
+        docker run -dp 3000:3000 \
+        -w /app -v $PWD:/app \
+        node:10-alpine \
+        sh -c "yarn install && yarn run dev"
+
+    ![alt text](image-36.png)
+
+    penjelasan sama seperti contoh app diawal [here](#here)
+
+3. kita lihat apa yang terjadi didalam container dengan melihat `logs` nya
+
+    ![alt text](image-37.png)
+
+4. Coba kita edit file didalamnya :D
+
+    ![alt text](image-38.png)
+
+    ![alt text](image-39.png)
+
+    sudah berubah
+
+    ![alt text](image-40.png)
+
+# G. Multi-Container Apps
+
+Banyak perdebatan antara expert lebih baik `mysql database` di jadikan satu container atau dipisah, sebaiknya dipisah menjadi beda container. karena kita dapat melakukan scaling hanya pada app tertentu misal hanya databasenya!.
+
+#### Starting Mysql
+
+1. Buat Network 
+
+        docker network create todo-app
+
+    ![alt text](image-41.png)
+
+
+2. Jalankan mysql server dengan beberapa setting untuk enviroment username dan password
+
+        docker run -d \
+            --network todo-app --network-alias mysql \
+            -v todo-mysql-data:/var/lib/mysql \
+            -e MYSQL_ROOT_PASSWORD=secret \
+            -e MYSQL_DATABASE=todos \
+            mysql:5.7
+
+    ![alt text](image-42.png)
+
+3. Mari kita coba mysql didalam containernya
+
+        docker exec -it <mysql-container-id> mysql -p
+
+    ![alt text](image-43.png)
+
+    ![alt text](image-44.png)
+
+#### Sambungkan Ke MYSQL
+
+Pastinya mengakses sebuah database memerlukan IP, lalu apa IP dari Container tersebut?? mari gunakan container berikut.
+
+
+1. install/pull `nicolaka/netshoot` container 
+
+        docker run -it --network todo-app nicolaka/netshoot
+
+    ![alt text](image-45.png)
+
+
+2. kita cari tahu ipnya dengan perintah dig
+
+    ![alt text](image-46.png)
+
+3.  Simpan IP MYSQL
+
+    172.18.0.2
+
+    Apakah perlu kita menulis ip ini dalam env? tidak perlu! 
+    Docker sudah otomatis melakukan resolve dns mysql sehingga kita cukup duduk santai :D
+
+
+#### Running APP + Mysql
+
+1. Run dengan command berikut tidak perlu ip spesifik
+
+        docker run -dp 3000:3000 \
+        -w /app -v $PWD:/app \
+        --network todo-app \
+        -e MYSQL_HOST=mysql \
+        -e MYSQL_USER=root \
+        -e MYSQL_PASSWORD=secret \
+        -e MYSQL_DB=todos \
+        node:10-alpine \
+        sh -c "yarn install && yarn run dev"
+
+    ![alt text](image-47.png)
+
+2. cek log apakah berhasil dijalankan
+
+    ![alt text](image-48.png)
+
+    tambahkan item todo di web
+
+3. Cek database
+
+    ![alt text](image-49.png)
+
+    Berhasil ditambahkan
+
