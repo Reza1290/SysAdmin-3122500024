@@ -7,6 +7,7 @@
 | [TUGAS 4](#tugas-4) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_4/README.md)_|
 | [TUGAS 5](#tugas-5) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_5/README.md)_|
 | [TUGAS 6](#tugas-6) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/README.md)_|
+| [TUGAS 7](#tugas-6) | _[FILE](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_7/README.md)_|
 
 ----
 
@@ -16,206 +17,252 @@
 - [B. Containerized Web Server Using Docker](#b-containerized-web-server-using-docker) `New `
 - [C. Apache2 + Dns Resolver + Docker Uptime Kuma Package](#c-apache2--dns-resolver--docker-uptime-kuma-package) `New `
 
-# A. Web Server and Web Browser Architecture 
 
+Disini kita gunakan Docker Labs pada link berikut
+https://labs.play-with-docker.com/
 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/webserver.png)
 
-Ketika pengguna memasukkan alamat web server ke dalam bilah alamat browser Chrome, browser mengirimkan permintaan HTTP ke alamat yang dituju. Permintaan ini mencakup informasi tentang jenis permintaan yang dibuat (seperti GET atau POST) dan alamat yang diminta, serta header permintaan lainnya. Web server yang dituju menerima permintaan ini di port yang sesuai (biasanya port 80 untuk HTTP dan 443 untuk HTTPS) dan memprosesnya. 
+# A. Getting Started
 
-Setelah memproses permintaan, server menghasilkan respons HTTP yang berisi informasi yang diminta, seperti halaman web atau data lainnya, bersama dengan kode status HTTP yang sesuai. Browser Chrome menerima respons ini dan memprosesnya, merender halaman web sesuai dengan HTML, CSS, dan JavaScript yang diterima. Konten yang diterima kemudian ditampilkan kepada pengguna.
+Disini kita akan mencoba melakukan running images docker bernama `dockersamples/101-tutorial`, dikarenakan tidak terdapat pada local machine kita maka docker melakukan pull ke https://hub.docker.com untuk mencari images dengan nama tersebut
 
+    docker run -d -p 80:80 dockersamples/101-tutorial
 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/app.png)
+![alt text](image.png)
 
+`docker run` berfungsi menjalankan images dengan param nama pada akhir <docker/docker/getting-started:pwd> pwd adalah tags <br>
+`-d` digunakan untuk mode dettach atau dijalankan di background <br>
+`-p` set port specified untuk di forward disini 80:80
 
-## Apa Bedanya Antara Server Aplikasi dan Server Web?
-Server aplikasi dan server web memiliki peran yang serupa namun dengan perbedaan tertentu yang perlu dipahami.
 
-Server aplikasi menggunakan lebih dari sekadar protokol HTTP. Mereka bisa bekerja dengan berbagai jenis program selain halaman web. Selain itu, server aplikasi biasanya menawarkan kemampuan tambahan yang memperluas fungsionalitasnya.
+# B. Our Application
 
-Di sisi lain, server web memiliki fungsi utama yang lebih terbatas. Mereka secara khusus menjalankan permintaan HTTP untuk menampilkan halaman web. Meskipun demikian, server web juga bisa menyediakan fitur tambahan seperti penyimpanan sementara dan permintaan dasar.
+Pada bab ini kita akan belajar melakukan Build Images dari source code dengan melakukan setting awal membuat sebuah `Dockerfile`, file ini akan dieksekusi saat kita akan melakukan sebuah build images di Docker.
 
-Situs web dan aplikasi yang menggunakan server aplikasi sering membutuhkan fitur yang tidak disediakan oleh server web biasa. Misalnya, server aplikasi memungkinkan transaksi, personalisasi, dan layanan pesan, yang menjadi semakin penting untuk berbagai jenis situs web.
+1. Pertama-tama source code dapat diperoleh pada link berikut :
+[DownloadZIP](http://ip172-18-0-94-cp0r4piim2rg00ao0lig-80.direct.labs.play-with-docker.com/assets/app.zip)
+    or [Zip](app.zip)
 
-Tidak jarang server web menjadi bagian dari server aplikasi. Ini karena server web seringkali merupakan komponen penting dari layanan yang disediakan oleh server aplikasi. Ketika seseorang membicarakan server aplikasi, sering kali juga dimaksudkan sebagai server web.
 
-Saat pengguna mengetikkan URL ke dalam browser, server web menyajikan konten yang sama tidak peduli dari mana pengguna tersebut atau perangkat apa yang digunakannya. Meskipun demikian, halaman web dengan komponen adaptif biasanya didukung oleh teknologi lain selain server web.
+    Setelah di download **Drag file zip tersebut** kedalam terminal lab docker. lakukan unzip file dan buat file `Dockerfile`
 
-Dalam pengelolaan situs web, kombinasi antara server web dan server aplikasi seringkali memberikan hasil yang lebih baik. Server web dapat menangani permintaan dasar dan menyediakan konten statis dengan baik, sedangkan server aplikasi lebih cocok untuk menangani permintaan yang lebih kompleks dan dinamis.
+        unzip app.zip
+        cd app
+        touch Dockerfile
+        vi Dockerfile
 
-Dengan demikian, meskipun server aplikasi dan server web memiliki perbedaan yang signifikan, keduanya memiliki peran yang penting dalam menjaga situs web berjalan dengan baik dan menyediakan pengalaman pengguna yang baik.
 
-![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/docker.png)
+    Di dalam `Dockerfile` ketik konfigurasi basic berikut
 
-## DOCKER / CONTAINERIZED Masuk Mana?
+        FROM node:10-alpine
+        WORKDIR /app
+        COPY . .
+        RUN yarn install --production
+        CMD ["node", "/app/src/index.js"]
 
-Docker atau containerisasi adalah teknologi yang memungkinkan pengembang untuk mengemas aplikasi dan semua dependensinya ke dalam unit yang disebut container. Dalam konteks server aplikasi dan web, Docker atau containerisasi sering digunakan untuk menyediakan lingkungan yang terisolasi untuk menjalankan aplikasi.
+    `FROM node:10-alpine` adalah images yang digunakan disini menggunakan image nodejs tersedia di [Hub Docker](https://hub.docker.com/layers/library/node/10-alpine/images/sha256-cebde99cf831563626740e22b74d5122aea6124db5c0f50bf56e4fdbf7712df1s) <br>
+    `WORKDIR` Working Directory digunakan sebagai tempat menjalankan perintah ( seperti root dir ) <br>
+    `COPY . .` Melakukan Copy file sekarang ke WorkDir <br>
+    `RUN yarn install --production` yarn dijalankan dengan perintah RUN <br>
+    `CMD` Disini merupakan perintah yang dieksekusi diakhir biasanya berisi **starting up a server**
 
-Dalam hubungannya dengan server aplikasi dan web, Docker atau containerisasi masuk dalam kategori yang berbeda dari server aplikasi dan server web. Server aplikasi dan server web adalah infrastruktur yang digunakan untuk menjalankan dan menyajikan aplikasi dan konten web kepada pengguna akhir. Di sisi lain, Docker atau containerisasi adalah teknologi yang digunakan untuk mengemas, mendistribusikan, dan menjalankan aplikasi dan layanan dalam lingkungan terisolasi yang disebut container.
+2. Lakukan Build Images
 
-Jadi, Docker atau containerisasi bisa dianggap sebagai teknologi yang dapat digunakan untuk menyediakan lingkungan runtime untuk menjalankan aplikasi di dalam server aplikasi atau server web. Mereka memungkinkan pengembang untuk mengemas dan mendistribusikan aplikasi dengan lebih mudah, serta memastikan konsistensi dalam lingkungan pengembangan, pengujian, dan produksi. Dengan demikian, Docker atau containerisasi memainkan peran penting dalam infrastruktur modern yang memungkinkan pengembangan dan pengiriman aplikasi yang lebih efisien dan dapat diandalkan.
+        docker build -t docker-101 .
 
+    `build` Build images diikuti <br>
+    `-t` tags dari images default latest/terbaru <br>
+    `.` mengacu pada direktori sekarang pastikan mengandung `Dockerfile`
 
-# B. Containerized Web Server Using Docker
+    ![alt text](image-5.png)
 
-Apa itu docker?, apakah docker sama dengan VMBOX?. Secara fungsi hampir sama tetapi tidak sama, jadi docker menjalankan aplikasi contohnya **MicroService** yang dimana dipecah menjadi kecil kecil kedalam sebuah container!, lalu apa bedanya jika menggunakan vmbox?,
+    ![alt text](image-1.png)
 
-Vmbox biasanya digunakan oleh sebuah aplikasi yang menjunjung tinggi sdlc Agile karena setiap satu vmbox menyimpan satu Server misal Vmbox A sebagai server nginx, lalu VMBOX B sebagai Server Database dst..
+3. Run Images yang telah kita buat
 
-Jika menggunakan SDLC DEVOPS Kebanyakan aplikasi telah menjadi MicroService yaitu dipecah menjadi container itu tadi
+        docker run -d -p 3000:3000 docker-101
 
-**Lalu apa saja Container Engine yang ada?**
+    ![alt text](image-2.png)
 
-Ada banyak seperti
+    ![alt text](image-3.png)
 
-Docker, Salad, Ambassador, Red Hat Openshift dll
+    Kita cek pada link labs
 
-[Docker](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/docker.com) menjadi salah satunya yang sering digunakan!
+    ![alt text](image-4.png)
+    
+Dengan demikian kita telah membuat sebuah aplikasi yang berjalan diatas docker container bisa kita lihat saat saya melakukan `Docker ps -a` terdapat 2 container berjalan dengan port berbeda.
 
-Oleh karenanya mari kita coba melakukan Kontainersiasi Virtual Box :D
+Jika kita tidak menggunakan container bisa jadi aplikasi dengan pengunaan Package Manager yang sama misal NodeJs, dapat terjadi mixed version. atau rancu.
 
+# C. Updating Our App
 
-#### A. Pemasang Docker di Debian vmBox
+Disini kita akan mencoba mengedit source file dari `App` kita yang sudah dijalankan pada Container, contoh disini kita ubah pada file `app.js`
 
-1. Hapus Docker.io dan dependency bawaan dari *DEBIAN!*, lakukan seperti command berikut!
+1. Buka /app/src/static/js/app.js gunakan editor dari labs
 
-        for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
+![alt text](image-6.png)
 
-2. Lakukan Update/Upgrade Repository dan tambahkan Docker Official GPG Keys
+2. Build ulang Images karena kita melakukan perubahan pada source
 
-        sudo apt-get update
-        sudo apt-get install ca-certificates curl
-        sudo install -m 0755 -d /etc/apt/keyrings
-        sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-        sudo chmod a+r /etc/apt/keyrings/docker.asc
+        docker build -t docker-101 .
 
-3. Tambahkan Repository Apt Resources
+    ![alt text](image-7.png)
 
-        echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
-        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update
+3. Jalankan Images Lagi ( Akan Error karena terdapat instance dengan port yang sama sedang dijalankan )
 
-4. Install DOCKER OFFICIAL PACKAGE
+        docker run -dp 3000:3000 docker-101
 
-        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ![alt text](image-8.png)
 
-5. Docker Sudah Terpasang :D !, Yuk coba jalankan Hello World
+4. Stop terlebih dahulu container dengan port `3000` kemudian hapus
 
-        sudo docker run hello-world
+        docker stop nama_container/id & docker rm nama_container/id
 
-    or
+    ![alt text](image-9.png)
 
-        sudo docker pull hello-world && docker run hello-world
+5. jalankan ulang
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-1.png)
+        docker run -dp 3000:3000 docker-101
 
-    Sum
+    ![alt text](image-10.png)
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image.png)    
+    Sudah berubah
 
+    ![alt text](image-11.png)
 
-### Membuat Docker Image
+    dan datanya hilang karena kita jalankan ulang! looks like factory mode
 
-1. Buat File dengan Konfigurasi Berikut Buat file bernama **Dockerfile**
+# D. Sharing our App
 
-    > Dockerfile
+Seperti github `Docker` memiliki Repositorynya sendiri seperti pada step pertama dilakukan pulling dari Docker Repo yang bernama `Hub Docker` https://hub.docker.com/
 
-        from nginx:alpine
+1. Buat Repository pada Hub Docker dengan nama repo `101-todo-app`
 
-        COPY index.html /usr/share/nginx/html
-        EXPOSE 80
+    ![alt text](image-12.png)
 
-        CMD ["nginx", "-g", "daemon off;"]
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-2.png)
+2. Push images dari Local ke dalam Docker HUB
 
-2. Build Ke dalam Docker **IMAGES**
+        docker push reza1290/101-todo-app
 
-            sudo docker build -t contoh .
+    ![alt text](image-13.png)
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-3.png)
+    diatas seharusnya file tidak ditemukan karena tidak ditemukan
 
-    Jalankan Docker dengan Perintah
+    ![alt text](image-14.png)
 
-3. Jalankan **DOCKER IMAGES**
+3. Login Ke akun kita untuk push
 
-        sudo docker run -d -p 80:80 contoh
+    ![alt text](image-17.png)
 
+4. Kita tag images tersebut ke reza1290/101-todo-app
 
-4. Berhasil!, akses port 80
+        docker tag docker-101 reza1290/101-todo-app
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-4.png)
+    ![alt text](image-15.png)
 
 
-# C. Apache2 + Dns Resolver + Docker Uptime Kuma Package
+5. Push tagged images
 
-Sekarang kita akan coba buka salah satu running server dengan dns yang diresolve oleh named/bind9 kemudian kita gunakan apache2 untuk web servernya :D
+        docker push reza1290/101-todo-app
 
-1. Git Clone Uptime Kuma dahulu
+    ![alt text](image-18.png)
 
-        git clone https://github.com/louislam/uptime-kuma.git
+6. Berhasil
 
-        cd uptime-kuma
+    ![alt text](image-19.png)
 
-2. lalu Jalankan dengan cara berikut
 
-        sudo docker compose up
 
-    yang dimana akan melakukan eksekusi file compose.yaml
+7. buat Instance baru dari Os labs
 
-    cek running container
+    ![alt text](image-20.png)
 
-        sudo docker ps -a
+    1. Run Images, ambil dari Hub karena tidak ada di lokal
 
-    pastikan berjalan
+            docker run -dp 3000:3000 rez1290/101-todo-app
 
-3. kita cek pada port berjalan yaitu **3001**
+        ![alt text](image-22.png)
 
-    `localhost:3001`
+        ![alt text](image-23.png)
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-5.png)
+        ![alt text](image-24.png)
 
-### Lalu Bagaimana jika menggunakan url `monitoring.kelompok2.local` ?
 
-1. Konfigurasi file **/var/lib/bind/db.kelompok2.local**
+Karena docker playground penuh sizenya saya pakai VPS saja :"
 
-    Tambahkan monitoring pada CNAME ns
-    dan jangan lupa ubah version file + date
+# E. Presisting Our DB
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-6.png)
+Kita tahu bahwa saat kita menghentikan/menghapus container data yang tersimpan pada container akan ikut hilang nah disini kita akan melakukan `presisting data`
 
-    `sudo sytemctl restart named`
 
-2. Untuk melakukan pointing ke domain localhost kita, kita gunakan ReverseProxy pada Apache2 Kita ( a2enmod )
+Kita buat 2 container 
 
-    Install Beberapa Package Berikut dengan menjalankan perintah berikut:
+**Container Pertama**
+1. buat sebuah Container dengan OS ubuntu dan buat sebuah file bernama file.txt yang melakukan generate random angka dari 1 hingga 10000
 
-    `sudo a2enmod`
+        docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
 
-    Masukkan Package berikut
-    `proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html`
+    bash digunakan untuk melakukan eksekusi bash terminal didalam container.
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/ss.png)
+    ![alt text](image-25.png)
 
-3. Setelah itu kita lakukan Konfigurasi pada Apache2 Kita
+2. Ekseskusi perintah cat
 
-    > /etc/apache2/sites-enabled/000-default.conf
+        docker exec id cat /data.txt
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-7.png)
+    ![alt text](image-26.png)
 
-    Tambahkan baris berikut untuk monitoring subdomain
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-8.png)
+3. Run container lain
 
-    `sudo sytemctl restart apache2`
+        docker run -it ubuntu ls /
 
-4. Cek pada web browser kita
+    ![alt text](image-27.png)
 
-    ![alt text](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/image-9.png)
+    disini tidak ada file data.txt karena kita tahu sendiri container ini berbeda
 
-    Berhasil :D
+    ![alt text](image-28.png)
 
-    ![hehe](https://github.com/Reza1290/SysAdmin-3122500024/blob/main/TUGAS_6/assets/hehe.gif)
+
+Secara default todo-app menyimpan pada sqlite database
+
+kita lakukn mounting database ke app dengan membuat sebuah volume 
+
+
+1. Buat volume 
+
+        docker volume create todo-db
+
+    ![alt text](image-29.png)
+
+2. jalankan todo container dengan mounting volume yang kita buat
+
+        docker run -dp 3000:3000 -v todo-db:/etc/todos docker-101
+
+    disini saya pull dari hub saya
+
+    ![alt text](image-30.png)
+
+3. tambahakan beberapa data seblum di hapus container
+
+    ![alt text](image-31.png)
+
+4. Remove container
+
+    ![alt text](image-32.png)
+
+5. Start lagi! dan seharusnya data masih ada
+
+    ![alt text](image-33.png)
+
+6. setelah di hapus sebelumnya masih ada datanya
+
+    ![alt text](image-34.png)
+
+7. docker menyimpannya dalam sebuah directory
+
+    ![alt text](image-35.png)
+
+
+# F. Using Bind Mounts
