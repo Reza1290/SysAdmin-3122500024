@@ -762,7 +762,7 @@ server {
 ```
 
 1. **storage**
-   - URL: [https://storage.ciptakode.biz.id/toefl/](https://storage.ciptakode.biz.id/toefl/)
+   - URL: [https://storage.ciptakode.biz.id/](https://storage.ciptakode.biz.id/)
    - Fungsi: Menyediakan layanan penyimpanan file, termasuk materi TOEFL.
 
 2. **user_service**
