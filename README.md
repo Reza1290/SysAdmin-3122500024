@@ -528,18 +528,16 @@ RUN chown -R www-data:www-data storage bootstrap \
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]```
+CMD ["php-fpm"]
+```
 
 MongoDB
 
 ```docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
 ```
 
+3. Supaya memudahkan development saya membuat beberapa subdomain dengan domain utama https://ciptakode.biz.id
 
-
-**Docker**
-
-- Service
 
 1. **storage**
    - URL: [https://storage.ciptakode.biz.id/toefl/](https://storage.ciptakode.biz.id/toefl/)
