@@ -296,6 +296,247 @@ link documentation API -> https://docs.google.com/spreadsheets/d/1-Jroqy-IDRazHR
 **2. Docker**
 **Deskripsi Singkat**
 
+#### A. Dockerize Service
+
+1. Sebelumnya mari buat sebuah docker-compose.yml untuk service yang akan kita buat, pertama-tama definisikan kebutuhan dari setiap container terlebih dahulu
+
+a. Container Admin Panel 
+- Node Js untuk build frontend yang menggunakan vitejs
+- Nginx untuk running port dan listener php-fpm
+- Php-fpm sebagai daemon
+
+b. Container DB
+- Memerlukan Image MongoDB kasus disini kami gunakan MongoDB Community
+- Setting network dan expose keluar ( disini saya pisahkan dengan webserver )
+
+c. Container USER Service
+- Nginx sebagai http server
+- dan PHP-fpm sebagai daemon
+
+d. Container Game Service
+- Nginx sebagai http server
+- dan PHP-fpm sebagai daemon
+
+d. Container Simulation Service
+- Nginx sebagai http server
+- dan PHP-fpm sebagai daemon
+
+e. Container Untuk Storage Service
+- Minio S3 Image
+- Nginx untuk port reverse httpnya
+
+
+
+2. Setup docker-compose
+
+dikarenakan php-fpm menggunakan port 9000 dan storage minio menggunakan port 9000 juga, maka disini saya melakukan mapping port dari range port 1290-1294 yang akan diteruskan ke local ip dari nginx server itu
+
+Untuk mongodb saya pisahkan dan tidak menggunakan Nginx.
+Bentuk dari docker-compose.yml dan Dockerfile adalah sebagai berikut:
+
+
+```
+root@sandbox-reza:~# cat /var/www/toefl/docker-compose.yml
+version: '3.8'
+
+services:
+  web_service:
+    build:
+      context: ${PWD}/web_service
+      dockerfile: Dockerfile
+    container_name: web_service
+    working_dir: /var/www/html
+    ports:
+      - "1291:9000"
+    volumes:
+      - /var/www/toefl/web_service:/var/www/html
+      - /var/www/toefl/web_service/.env:/var/www/html/.env
+    networks:
+      - toefl_network
+    depends_on:
+      - node_web
+    command: >
+      bash -c "composer install --ignore-platform-reqs --no-interaction --no-scripts &&
+               php artisan key:generate &&
+               php artisan config:cache &&
+               php artisan config:clear &&
+               php-fpm"
+
+  user_service:
+    build:
+      context: ${PWD}/user_service
+      dockerfile: Dockerfile
+    container_name: user_service
+    working_dir: /var/www/html
+    ports:
+      - "1292:9000"
+    volumes:
+      - /var/www/toefl/user_service:/var/www/html
+      - /var/www/toefl/user_service/.env:/var/www/html/.env
+    networks:
+      - toefl_network
+    command: >
+      bash -c "composer install --ignore-platform-reqs --no-interaction --no-scripts &&
+               php artisan key:generate &&
+               php artisan config:cache &&
+               php artisan config:clear &&
+               php-fpm"
+
+  simulation_service:
+    build:
+      context: ./simulation_service
+      dockerfile: Dockerfile
+    container_name: simulation_service
+    working_dir: /var/www/html
+    ports:
+      - "1293:9000"
+    volumes:
+      - /var/www/toefl/simulation_service:/var/www/html
+      - /var/www/toefl/simulation_service/.env:/var/www/html/.env
+    networks:
+      - toefl_network
+    command: >
+      bash -c "composer install --ignore-platform-reqs --no-interaction --no-scripts &&
+               php artisan key:generate &&
+               php artisan config:cache &&
+               php artisan config:clear &&
+               php-fpm"
+
+  game_service:
+    build:
+      context: ./game_service
+      dockerfile: Dockerfile
+    container_name: game_service
+    working_dir: /var/www/html
+    ports:
+      - "1294:9000"
+    volumes:
+      - /var/www/toefl/game_service:/var/www/html
+      - /var/www/toefl/game_service/.env:/var/www/html/.env
+    networks:
+      - toefl_network
+    command: >
+      bash -c "composer install --ignore-platform-reqs --no-interaction --no-scripts &&
+               php artisan key:generate &&
+               php artisan config:cache &&
+               php artisan config:clear &&
+               php-fpm"
+
+  node_web:
+    image: node:20-slim
+    container_name: node_web
+    working_dir: /var/www/html
+    volumes:
+      - /var/www/toefl/web_service:/var/www/html
+    networks:
+      - toefl_network
+    command: >
+      sh -c "npm cache clean --force && npm install && npm run build"
+
+  nginx:
+    image: nginx:1.24
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/var/www/html
+      - /var/www/toefl/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /var/www/toefl/nginx/ciptakode.crt:/etc/ssl/certs/ciptakode.crt
+      - /var/www/toefl/nginx/ciptakode.key:/etc/ssl/private/ciptakode.key
+    networks:
+      - toefl_network
+    depends_on:
+      - web_service
+      - user_service
+      - simulation_service
+      - game_service
+
+  storage:
+    image: docker.io/bitnami/minio:2022
+    container_name: storage
+    ports:
+      - '1290:9000'
+      - '9001:9001'
+    networks:
+      - toefl_network
+    volumes:
+      - 'toefl_storage:/data'
+    environment:
+      - MINIO_ROOT_USER=kamuiniapa
+      - MINIO_ROOT_PASSWORD=akumanusia
+      - MINIO_DEFAULT_BUCKETS=toefl
+
+networks:
+  toefl_network:
+    driver: bridge
+
+volumes:
+  toefl_storage:
+    driver: local
+    
+```
+Laravel
+
+```root@sandbox-reza:~# cat /var/www/toefl/Dockerfile
+# Use the official PHP image
+FROM php:8.2-fpm
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    zip \
+    git \
+    unzip \
+    nano \
+    libssl-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install pdo pdo_mysql \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copy existing application directory contents
+COPY . .
+
+# Install Composer dependencies
+RUN composer install
+
+# Generate application key
+RUN php artisan key:generate
+
+# Cache configuration
+RUN php artisan config:cache
+RUN php artisan config:clear
+
+# Set permissions for storage directory
+RUN chown -R www-data:www-data storage bootstrap \
+    && chmod -R 775 storage bootstrap \
+    && find storage bootstrap -type d -exec chmod g+s {} +
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]```
+
+MongoDB
+
+```docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+```
+
+
+
 **Docker**
 
 - Service
