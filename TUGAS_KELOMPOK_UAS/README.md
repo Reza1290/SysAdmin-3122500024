@@ -89,6 +89,16 @@ Mobile Apps e-TOEFL</h1>
 
 <hr>
 
+## Abstrak
+
+E-TOEFL adalah aplikasi mobile berbasis Flutter yang dirancang untuk membantu mahasiswa PENS dalam mempersiapkan tes e-TOEFL. Aplikasi ini menawarkan pengalaman belajar yang dipersonalisasi, memungkinkan pengguna memilih topik latihan dan memantau skor simulasi. Backend aplikasi menggunakan Laravel untuk autentikasi dan berinteraksi dengan MongoDB NoSQL yang menyimpan data dan melakukan operasi CRUD. Docker Engine digunakan untuk mengembangkan, mengirimkan, dan menjalankan aplikasi dalam kontainer, memastikan portabilitas, isolasi, dan kemudahan deployment. Desain sistem meliputi Storage Server pada port 3000 untuk penyimpanan file, Web Server Laravel pada port 80 untuk logika bisnis dan komunikasi dengan Storage Server dan MongoDB, serta MongoDB pada port 27017 untuk penyimpanan data aplikasi. Docker Engine menghubungkan antarmuka pengguna mobile dengan layanan backend. Tahapan pelaksanaan mencakup perencanaan dan analisis, desain dan prototyping, pengembangan dan implementasi, serta deployment dan pemeliharaan. Pada sistem testing terdapat pengujian unit, integrasi, sistem, dan uji pengguna. Docker memastikan konsistensi lingkungan pengujian. Aplikasi e-TOEFL diharapkan meningkatkan aksesibilitas dan efektivitas persiapan tes e-TOEFL bagi mahasiswa dengan sistem backend yang handal dan terkontainerisasi.
+
+*Keywords:* *e-toefl, container, docker*
+
+## Tahap Pelaksanaan
+
+Proyek berlangsung selama 6 minggu, mulai dari tanggal 25 April 2024 hingga 30 Mei 2024. Dimana tahapan pelaksanaannya mencakup perencanaan dan analisis hingga pengujian.
+
 ## Pendahuluan
 
 Docker adalah platform perangkat lunak yang memudahkan pembuatan, pengujian, dan penerapan aplikasi dengan cepat. Docker mengemas perangkat lunak ke dalam kontainer yang berisi semua kebutuhan perangkat lunak agar bisa berfungsi, seperti pustaka, alat sistem, kode, dan runtime. Dengan Docker, kita dapat dengan mudah menerapkan dan menskalakan aplikasi di berbagai lingkungan. Docker memiliki beberapa manfaat yaitu, portabilitas aplikasi yang dapat dijalankan di lingkungan apapun tanpa perlu mengubah konfigurasi, isolasi yang memastikan setiap kontainer berjalan terpisah dan aman dari aplikasi lain, kemudahan deployment dan skalabilitas aplikasi untuk menambah atau mengurangi instance kontainer dengan mudah.
@@ -102,7 +112,7 @@ eTOEFL adalah aplikasi berbasis mobile yang dikembangkan dengan Flutter dan memu
 ## Desain Sistem
 
 <div align="center">
-  <img src="./img/1.png" alt="" width="35%" />
+  <img src="./img/1.png" alt="" width="80%" />
 </div>
 
 1. **Storage Server** berjalan pada port 3000 yang bertanggung jawab untuk menyimpan dan mengambil data, khususnya file atau dokumen besar yang diperlukan oleh aplikasi.
@@ -117,95 +127,219 @@ eTOEFL adalah aplikasi berbasis mobile yang dikembangkan dengan Flutter dan memu
 
 ## Tim dan Tugas
 
-- **UI/UX**
+**Link Backlog:** https://docs.google.com/spreadsheets/d/1H3uiufmB5BPQeNi5vA3qUKwm-h5uV2LpxK4VTh3sPIg/edit?usp=sharing
 
-1. Ali Azhar (3122500011)
-2. Mayada Azizah (3122500015)
-3. Gandi Rukmaning Ayu (3122500016)
-4. Adinda Zahra Q (3122500020)
-
-- **FrontEnd Mobile**
-
-1. Arsyita Devanaya Arianto (312250000)
-2. Ali Azhar (3122500011)
-3. Mahendra Khibrah R. S (3122500013)
-4. Mayada Azizah (3122500015)
-5. Gandi Rukmaning Ayu (3122500016)
-6. Adam Rasyid Nurmuhammd (3122500018)
-7. Adinda Zahra Q (3122500020)
-8. M Reza Muktasib (3122500024)
-9. Adira Callysta (3122500025)
-10. Shofira Izza N (3122500026)
-
-- **BackEnd Mobile**
-
-1. Gede Hari Yoga Nanda (3122500005)
-2. Mahendra Khibrah R. S (3122500013)
-3. M Reza Muktasib (3122500024)
-
-- **Consume API**
-
-1. Arsyita Devanaya Arianto (312250000)
-2. Mahendra Khibrah R. S (3122500013)
-3. Mayada Azizah (3122500015)
-4. Adam Rasyid Nurmuhammd (3122500018)
-5. Adinda Zahra Q (3122500020)
-6. M Reza Muktasib (3122500024)
-7. Shofira Izza N (3122500026)
-
-- **Database**
-
-1. Gede Hari Yoga Nanda (3122500005)
+<table class="tableizer-table">
+<thead><tr class="tableizer-firstrow"><th>BACKLOG</th><th>TODO</th><th>EKSEKUTOR</th></tr></thead><tbody>
+ <tr><td>Mobile Homepage</td><td>Slicing Card Target Score</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Api Target Score</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Chart Pie Lingkaran</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Rank User</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Card Navigasi Rank</td><td>Ali Azhar P.B</td></tr>
+ <tr><td>&nbsp;</td><td>Consume For You List</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing For You Card</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Simulation Card</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Learning Path Category Quiz</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Learning Path Card</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>&nbsp;</td><td>Design Card Set Target</td><td>Gandi Rukmaning Ayu, Adinda Zahra Q, Mayada Azizah</td></tr>
+ <tr><td>&nbsp;</td><td>Design Chart Pie Lingkaran</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Design For You Card</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>&nbsp;</td><td>Design Learning Path Card</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>&nbsp;</td><td>Design Simulation Card</td><td>Adinda Zahra Q, Adinda Zahra Q</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Bottom Nav Bar</td><td>M Reza Muktasib</td></tr>
+ <tr><td>Mobile Bookmark</td><td>Slicing Card Bookmark</td><td>Adam Rasyid Nurmuhammad</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Bookmark List</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Design Card Bookmark</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>Mobile Profile</td><td>Design Profile Page</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Profile User</td><td>Shofira Izza N</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Profile Page</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>Target Score</td><td>Slicing Target Score List</td><td>Adam Rasyid Nurmuhammad</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Target Score List</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Design Target Score Page</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>Simulation Test List Page</td><td>Slicing Test List Page</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Consume List Test Page</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>Simulation Test Page</td><td>Slicing Bottom Nav Bar</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Design Bottom Nav Bar</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing List Soal Bottom Sheet</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Design List Soal Bottom Sheet</td><td>Mayada Azizah, Adinda Zahra Q</td></tr>
+ <tr><td>&nbsp;</td><td>Implementasi Logic Test Question</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Test Question Option dan Key</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Implementasi Logic Test Session</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat State Management Test</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Test Result</td><td>Adam Rasyid Nurmuhammad</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Test Result</td><td>Mahendra Khibrah R. S</td></tr>
+ <tr><td>Leaderboard</td><td>Design Leaderboard</td><td>Gandi Rukmaning Ayu, Mayada Azizah</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Leaderboard</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Leaderboard</td><td>Arsyita Devanaya Arianto</td></tr>
+ <tr><td>Quiz List Page</td><td>Design Quiz List Page</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Quiz List Page</td><td>Arsyita Devanaya Arianto, M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Quiz List Page</td><td>M Reza Muktasib</td></tr>
+ <tr><td>Quiz Page</td><td>Consume Quiz Question</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Take Quiz</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Result</td><td>M Reza Muktasib</td></tr>
+ <tr><td>Game Page</td><td>Design Layout Game Path</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Layout Game Path</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Create Logic Path Background</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Consume List Game To Path</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Resume Session</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Quiz In Review</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Consume Quiz Question</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Quiz Page</td><td>Shofira Izza N</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Save User Answer</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Result Quiz</td><td>Shofira Izza N</td></tr>
+ <tr><td>&nbsp;</td><td>Logic Result Quiz</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Quiz Game State </td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Bottom Sheet Game Detail</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Bottom App Bar Game Level</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Slicing Slash Screen</td><td>Shofira Izza N</td></tr>
+ <tr><td>&nbsp;</td><td>Design Result Quiz</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>&nbsp;</td><td>Design Bottom Sheet Game Detail</td><td>Gandi Rukmaning Ayu</td></tr>
+ <tr><td>Component</td><td>Base Button</td><td>Mahendra Kibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Background Question</td><td>Mahendra Kibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Setup TextTheme, Color Pallete</td><td>Mahendra Kibrah R. S, M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Answer Button Template</td><td>Mahendra Kibrah R. S, Shofira Izza N</td></tr>
+ <tr><td>&nbsp;</td><td>Answer Validation Container</td><td>Mahendra Kibrah R. S</td></tr>
+ <tr><td>&nbsp;</td><td>Design Component Base Button</td><td>Gandi Rukmaning Ayu, Adinda Zahra Q, Mayada Azizah</td></tr>
+ <tr><td>&nbsp;</td><td>Design Answer Button</td><td>Gandi Rukmaning Ayu, Adinda Zahra Q, Mayada Azizah</td></tr>
+ <tr><td>&nbsp;</td><td>Design Validation Answer</td><td>Gandi Rukmaning Ayu, Adinda Zahra Q, Mayada Azizah</td></tr>
+ <tr><td>Assets</td><td>Membuat Maskot</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon Bottom Navbar</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon For You Card</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon Representasi Part TOEFL</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon Badge Game</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon Rank</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Figur Orang Onboarding</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Figur Orang Login</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Assets Buku Game</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Ikon Reusable Black White</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Logo MyToefl</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>&nbsp;</td><td>Recreate Pilihan Target Onboarding asset</td><td>Ali Azhar P. B</td></tr>
+ <tr><td>PostMan</td><td>Setup Postman</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Test Docs</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>QuiZGameDocs</td><td>M Reza Muktasib</td></tr>
+ <tr><td>Admin Panel</td><td>Setup Web Server Service</td><td>M Reza Muktasib, Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Mazer</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Form Input Test</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Membuat Form Input Question Answer</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Login User Admin Panel</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Swagger</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Quiz Form</td><td>M Reza Muktasib</td></tr>
+ <tr><td>User Service</td><td>Setup User Service Container</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Laravel Auth</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>JWT AUTH</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>User Api</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>User OTP SMTP</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>Test Service</td><td>Setup Test Service Container</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Packet Test Api</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Answer Test Api</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Bookmark Test Api</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>&nbsp;</td><td>Target Score Api</td><td>Gede Hari Yogananda</td></tr>
+ <tr><td>Storage Service</td><td>Setup Container Storage</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Gateway Storage</td><td>M Reza Muktasib, Gede Hari Yogananda</td></tr>
+ <tr><td>Game Service</td><td>Setup Game Service Container</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Game Set Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Game HomePage Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Leaderboard Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Game Answer Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Scrambled Word Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Pairing Game Word Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Quiz Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Quiz Game Claim Api</td><td>M Reza Muktasib</td></tr>
+ <tr><td>Database Service</td><td>Setup MongoDB Container</td><td>M Reza Muktasib</td></tr>
+ <tr><td>&nbsp;</td><td>Setup Collection</td><td>M Reza Muktasib, Gede Hari Yogananda</td></tr>
+ <tr><td>Utils</td><td>Data Entry</td><td>Mayada Azizah, Adinda Zahra Q, Adira Calysta</td></tr>
+ <tr><td>&nbsp;</td><td>Scraping En_Word</td><td>M Reza Muktasib</td></tr>
+</tbody></table>
 
 ## Tahapan Pelaksaan
 
-1. **Perancanaan dan Analisis**
-   - **Menentukan Tujuan dan Sasaran:**
-     - **Meningkatkan persiapan tes e-TOEFL bagi mahasiswa PENS:** Aplikasi e-TOEFL dirancang untuk membantu mahasiswa PENS mencapai nilai tes e-TOEFL yang optimal. Hal ini penting karena tes e-TOEFL merupakan salah satu prasyarat kelulusan di PENS.
-     - **Memberikan pengalaman belajar yang dipersonalisasi:** Pengguna dapat memilih topik latihan yang sesuai dengan minat dan kebutuhan mereka. Hal ini dapat membantu mereka fokus pada area yang perlu diperbaiki. Selain itu, pengguna dapat melihat skor simulasi tes dan latihan mereka. Hal ini dapat membantu mereka melihat bagaimana mereka berkembang dan tetap termotivasi.
-     - **Membuat tes e-TOEFL lebih mudah diakses:** Aplikasi ini tersedia di perangkat seluler, sehingga pengguna dapat belajar dan berlatih kapanpun dan dimanapun mereka mau.
-   - **Mengidentifikasi Target Pengguna:** Memahami kebutuhan, preferensi, dan poin-poin yang membuat frustasi pengguna target.
-   - **Melakukan Riset Pasar:** Menganalisis aplikasi persiapan TOEFL yang ada, mengidentifikasi kekuatan dan kelemahannya, dan menemukan celah pasar yang potensial. Ini akan membantu membedakan aplikasi e-TOEFL dengan aplikasi lain dan memenuhi kebutuhan pengguna yang belum terpenuhi.
-   - **Membuat Rencana Proyek:** Membuat garis besar proses pengembangan, termasuk garis waktu, pencapaian, dan pembagian tugas.
-   - **Pemilihan Tumpukan Teknologi:** Memilih teknologi yang sesuai untuk pengembangan front-end (aplikasi seluler) dan back-end (sisi server), berbagai faktor perlu dipertimbangkan, seperti bahasa pemrograman, framework, database, dan alat containerization.
-2. **Desain dan Prototype**
-   - **Desain Antarmuka Pengguna (UI):** Membuat wireframe dan mockup untuk memvisualisasikan tata letak, navigasi, dan elemen visual aplikasi.
-   - **Desain Pengalaman Pengguna (UX):** Merancang aliran pengguna, memastikan navigasi yang mudah, interaksi yang jelas, dan pengalaman keseluruhan yang tepat.
-   - **Pengembangan Konten:** Mencari pertanyaan latihan TOEFL berkualitas tinggi, terpercaya, dan selaras dengan format dan standar TOEFL terbaru.
-3. **Pengembangan dan Implementasi**
-   - **Pengembangan Front-end:**
-     - **Flutter:** Bahasa pemrograman Flutter dipilih untuk membangun aplikasi mobile yang handal dan berkinerja tinggi.
-   - **Pengembangan Back-end:**
-     - **MongoDB:** MongoDB dipilih sebagai database untuk menyimpan data pengguna dan aplikasi dengan aman dan efisien. Struktur data NoSQL MongoDB yang fleksibel dan skalabel ideal untuk menangani data pengguna yang terus bertambah dan kebutuhan aplikasi yang berkembang.
-     - **Laravel:** Web server Laravel digunakan untuk menangani permintaan API dan menyediakan fungsionalitas back-end. Laravel menawarkan framework PHP yang kokoh dan aman untuk membangun API yang handal dan mudah diintegrasikan dengan aplikasi mobile.
-     - **Storage Server:** Storage server yang sesuai digunakan untuk menyimpan file dan data lainnya.
-   - **Containerization : **
-     - **Docker Engine:** Docker Engine diimplementasikan untuk memastikan aplikasi dapat dijalankan dengan mudah dan konsisten di berbagai lingkungan. Docker memungkinkan kontainerisasi layanan back-end, seperti web server Laravel, storage server, dan database MongoDB, sehingga aplikasi dapat dijalankan secara independen dan terisolasi.
-     - **Komunikasi Antar Layanan:** Docker Engine bertindak sebagai perantara yang mengelola komunikasi antara aplikasi mobile dan berbagai layanan back-end. Docker Engine menerima permintaan dari aplikasi mobile dan meneruskannya ke layanan back-end yang sesuai, seperti web server Laravel, storage server, atau database MongoDB. Hal ini memastikan komunikasi yang efisien dan aman antar komponen aplikasi.
-4. **Deployment dan Pemeliharaan**
-   - **Deployment Aplikasi Mobile:** Membangun dan menguji aplikasi mobile Flutter, mempublikasikannya ke platform distribusi, dan memantau performa serta umpan balik pengguna
-   - **Deployment Storage Server:** Mengkonfigurasi dan mengelola storage server untuk menyimpan data pengguna dan aplikasi dengan aman, memastikan skalabilitas dan ketersediaan, serta melakukan backup dan pemulihan data secara berkala.
-   - **Deployment Web Server Laravel:** Web server Laravel merupakan komponen back-end dari aplikasi e-TOEFL. Proses deployment-nya meliputi beberapa langkah penting. Pertama, membangun image Docker yang berisi aplikasi Laravel dan semua dependensinya. Selanjutnya, menyiapkan file konfigurasi Docker Compose untuk mengkonfigurasi layanan, termasuk database dan web server. Setelah itu, menjalankan container Docker menggunakan Docker Compose untuk memulai layanan Laravel. Kemudian, memverifikasi aksesibilitas web server melalui browser atau alat lain untuk memastikan semuanya berjalan dengan benar. Terakhir, memastikan integrasi dengan storage server dan database untuk menyimpan dan mengambil data yang diperlukan. Langkah-langkah ini penting untuk memastikan web server e-TOEFL berfungsi dengan baik, terhubung dengan database dan storage server, serta mampu memberikan layanan pembelajaran yang handal.
-   - **Deployment Docker Engine Container:** Proses deployment container Docker Engine untuk layanan back-end meliputi beberapa langkah penting. Pertama, membangun dan menguji image Docker yang berisi aplikasi back-end dan semua dependensinya. Setelah itu, menyebarkan image Docker ke Docker Engine dengan mengunggah image ke registry Docker, kemudian menarik dan menjalankan image tersebut pada Docker Engine di storage server. Terakhir, mengelola dan memperbaiki image Docker dan kontainer dengan memonitor container yang berjalan, melakukan update image Docker sesuai kebutuhan, dan me-restart container untuk memastikan aplikasi selalu berjalan dengan lancar.
-
+<div align="center">
+  <img src="./img/tahapan-pelaksanaan.jpg" alt="" width="100%" />
+</div>
 
 ## Implementasi
 
-Menjalankan aplikasi e-TOEFL sesuai rencana yang telah disusun, memastikan setiap komponen sistem berfungsi dengan baik, dan melakukan penyempurnaan berdasarkan hasil pengujian dan umpan balik pengguna.
+**Tahap 1: Perencanaan & Analisis (Minggu 1-2)**
+
+**Tujuan & Sasaran:** Output dari tahap ini adalah dokumen yang berisi tujuan dan sasaran implementasi E-TOEFL. Dokumen ini harus jelas, terukur, dapat dicapai, relevan, dan berjangka waktu (SMART). <br>
+**Mengidentifikasi Target Pengguna:** Output dari tahap ini adalah profil target pengguna E-TOEFL. Profil ini harus mencakup informasi demografis, kebutuhan, dan ekspektasi pengguna. <br>
+**Gamifikasi:** Output dari tahap ini adalah desain gamifikasi yang akan diterapkan pada E-TOEFL. Desain ini harus menarik dan memotivasi pengguna untuk menyelesaikan tes. <br>
+**Rancangan Database:** Output dari tahap ini adalah rancangan database yang akan digunakan untuk menyimpan data pengguna, hasil tes, dan informasi lainnya. <br>
+**Pemilihan Teknologi:** Output dari tahap ini adalah pilihan teknologi yang akan digunakan untuk mengembangkan E-TOEFL. Pilihan teknologi ini harus mempertimbangkan faktor-faktor seperti skalabilitas, keamanan, dan kemudahan penggunaan.
+
+**Tahap 2: Desain & Prototyping (Minggu 3-4)**
+
+**Desain UI/UX:** Output dari tahap ini adalah desain antarmuka pengguna (UI) dan pengalaman pengguna (UX) E-TOEFL. Desain ini harus intuitif, mudah digunakan, dan estetis. <br>
+**Pengembangan Konten:** Output dari tahap ini adalah konten tes E-TOEFL. Konten ini harus sesuai dengan standar internasional dan relevan dengan kebutuhan target pengguna.
+
+**Tahap 3: Pengembangan & Implementasi (Minggu 5-6)**
+
+**Pengembangan FE Mobile:** Output dari tahap ini adalah aplikasi mobile E-TOEFL. Aplikasi ini harus memungkinkan pengguna untuk mengikuti tes dari perangkat mobile mereka. <br>
+**Pengembangan BE:** Output dari tahap ini adalah backend E-TOEFL. Backend ini harus bertanggung jawab untuk memproses data pengguna, hasil tes, dan informasi lainnya. <br>
+**Containerization Docker:** Output dari tahap ini adalah container Docker untuk E-TOEFL. Container ini akan memungkinkan E-TOEFL untuk dijalankan dengan mudah di berbagai lingkungan.
+
+**Tahap 4: Testing & Deployment (Minggu 7-8)**
+
+**Testing Installation:** Output dari tahap ini adalah instalasi E-TOEFL di lingkungan produksi. Instalasi ini harus memastikan bahwa E-TOEFL berjalan dengan lancar dan aman. <br>
+**Functional Testing:** Output dari tahap ini adalah pengujian fungsional E-TOEFL. Pengujian ini harus memastikan bahwa semua fitur E-TOEFL berfungsi dengan benar. <br>
+**Uji Coba:** Output dari tahap ini adalah hasil uji coba E-TOEFL dengan pengguna nyata. Uji coba ini harus mengidentifikasi masalah dan bug yang masih ada. <br>
+**Peluncuran:** Output dari tahap ini adalah peluncuran E-TOEFL ke publik. Peluncuran ini harus dilakukan dengan strategi yang tepat untuk memastikan kelancaran dan kesuksesan.
 
 ## Sistem testing
 
-1. **Pengujian unit**
-   - Setiap komponen aplikasi, baik front-end maupun back-end, diuji secara individual untuk memastikan setiap unit fungsionalitas berfungsi dengan benar.
-   - Pengujian ini mencakup pengujian kode dalam container Docker untuk memastikan bahwa semua dependensi dan konfigurasi telah diatur dengan benar.
-2. **Pengujian integrasi**
-   - Memastikan bahwa berbagai layanan back-end berinteraksi dengan benar satu sama lain dan dengan front-end.
-3. **Pengujian sistem**
-   - Menguji keseluruhan aplikasi sebagai satu kesatuan untuk memastikan semua bagian bekerja bersama dengan baik.
-4. **Uji pengguna**
-   - Uji coba pengguna dilakukan untuk mendapatkan umpan balik dari pengguna nyata dan memastikan aplikasi memenuhi kebutuhan mereka.
-   - Docker digunakan untuk membuat lingkungan pengujian yang konsisten untuk semua peserta uji coba, memastikan bahwa setiap pengguna mengalami aplikasi dalam kondisi yang sama.
-   - Umpan balik dari uji pengguna digunakan untuk melakukan penyesuaian dan perbaikan, yang kemudian diuji ulang dalam container Docker untuk memastikan kualitas dan kinerja.
+### Fungsional Testing 
+**1. API**
+![image](https://github.com/gandirayu/Administrasi_Jaringan/assets/123063394/bd1b4ac9-deaf-4d75-83a4-65a3753d5ba9)
+
+link documentation API -> https://docs.google.com/spreadsheets/d/1-Jroqy-IDRazHRMXz3AzIXzvIScPwYVNrdnf1L9PnkQ/edit?usp=sharing
+
+**2. Docker**
+**Deskripsi Singkat**
+
+**Docker**
+
+- Service
+
+1. **storage**
+   - URL: [https://storage.ciptakode.biz.id/toefl/](https://storage.ciptakode.biz.id/toefl/)
+   - Fungsi: Menyediakan layanan penyimpanan file, termasuk materi TOEFL.
+
+2. **user_service**
+   - URL: [https://user.ciptakode.biz.id](https://user.ciptakode.biz.id)
+   - Fungsi: Menangani autentikasi, OTP, dan profil pengguna.
+
+3. **simulation_service**
+   - URL: [https://simulation.ciptakode.biz.id](https://simulation.ciptakode.biz.id)
+   - Fungsi: Mengelola target dan simulasi.
+
+4. **game_service**
+   - URL: [https://game.ciptakode.biz.id](https://game.ciptakode.biz.id)
+   - Fungsi: Menyediakan homepage untuk game, permainan, dan kuis.
+
+5. **web_service**
+   - URL: [https://ciptakode.biz.id](https://ciptakode.biz.id)
+   - Fungsi: Menyediakan panel admin.
+
+6. **database_service**
+   - Teknologi: MongoDB private
+   - Fungsi: Menyimpan data secara terpusat menggunakan database MongoDB.
+
+- Up testing
+  <div align="center">
+    <img src="./img/5.png" alt="" width="100%" />
+  </div>
+- Run Testing
+  <div align="center">
+    <img src="./img/3.png" alt="" width="100%" />
+  </div>
+- Restart Test
+  <div align="center">
+    <img src="./img/2.jpg" alt="" width="100%" />
+  </div>
+- Down Testing
+  <div align="center">
+    <img src="./img/4.png" alt="" width="100%" />
+  </div>
 
 ## Kesimpulan
 

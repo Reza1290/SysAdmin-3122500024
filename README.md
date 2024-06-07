@@ -112,7 +112,7 @@ eTOEFL adalah aplikasi berbasis mobile yang dikembangkan dengan Flutter dan memu
 ## Desain Sistem
 
 <div align="center">
-  <img src="./img/1.png" alt="" width="80%" />
+  <img src="./TUGAS_KELOMPOK_UAS/img/1.png" alt="" width="80%" />
 </div>
 
 1. **Storage Server** berjalan pada port 3000 yang bertanggung jawab untuk menyimpan dan mengambil data, khususnya file atau dokumen besar yang diperlukan oleh aplikasi.
@@ -254,7 +254,7 @@ eTOEFL adalah aplikasi berbasis mobile yang dikembangkan dengan Flutter dan memu
 ## Tahapan Pelaksaan
 
 <div align="center">
-  <img src="./img/tahapan-pelaksanaan.jpg" alt="" width="100%" />
+  <img src="./TUGAS_KELOMPOK_UAS/img/tahapan-pelaksanaan.jpg" alt="" width="100%" />
 </div>
 
 ## Implementasi
@@ -326,19 +326,19 @@ link documentation API -> https://docs.google.com/spreadsheets/d/1-Jroqy-IDRazHR
 
 - Up testing
   <div align="center">
-    <img src="./img/5.png" alt="" width="100%" />
+    <img src="./TUGAS_KELOMPOK_UAS/img/5.png" alt="" width="100%" />
   </div>
 - Run Testing
   <div align="center">
-    <img src="./img/3.png" alt="" width="100%" />
+    <img src="./TUGAS_KELOMPOK_UAS/img/3.png" alt="" width="100%" />
   </div>
 - Restart Test
   <div align="center">
-    <img src="./img/2.jpg" alt="" width="100%" />
+    <img src="./TUGAS_KELOMPOK_UAS/img/2.jpg" alt="" width="100%" />
   </div>
 - Down Testing
   <div align="center">
-    <img src="./img/4.png" alt="" width="100%" />
+    <img src="./TUGAS_KELOMPOK_UAS/img/4.png" alt="" width="100%" />
   </div>
 
 ## Kesimpulan
