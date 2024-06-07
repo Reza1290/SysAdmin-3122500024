@@ -537,7 +537,229 @@ MongoDB
 ```
 
 3. Supaya memudahkan development saya membuat beberapa subdomain dengan domain utama https://ciptakode.biz.id
+disini saya beri SSL dari cloudflare menggunakan origin server
 
+![alt text](./TUGAS_KELOMPOK_UAS/img/image.png)
+
+4. kemudian setting untuk nginxnya
+
+```
+root@sandbox-reza:~# cat /var/www/toefl/nginx/default.conf
+server {
+    listen 80;
+    server_name ciptakode.biz.id user.ciptakode.biz.id simulation.ciptakode.biz.id game.ciptakode.biz.id storage.ciptakode.biz.id;
+    return 301 https://$host$request_uri;
+}
+
+# General settings for ciptakode.biz.id
+server {
+    listen 443 ssl;
+    server_name ciptakode.biz.id;  # Replace with your domain name
+
+    ssl_certificate /etc/ssl/certs/ciptakode.crt;
+    ssl_certificate_key /etc/ssl/private/ciptakode.key;
+
+    root /var/www/html/public;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_intercept_errors on;
+        fastcgi_pass web_service:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        #fastcgi_param SCRIPT_FILENAME /usr/share/nginx/html$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+
+
+
+}
+
+# Settings for user.ciptakode.biz.id
+server {
+    listen 443 ssl;
+    server_name user.ciptakode.biz.id;
+
+    #ssl_certificate /etc/ssl/certs/ciptakode_user.crt;
+    #ssl_certificate_key /etc/ssl/private/ciptakode_user.key;
+    ssl_certificate /etc/ssl/certs/ciptakode.crt;
+    ssl_certificate_key /etc/ssl/private/ciptakode.key;
+
+    root /var/www/html/public;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    #location ~ ^/.well-known/ {
+   #     allow all;
+  #      default_type application/json;
+ #       try_files $uri $uri/ =404;
+#    }
+
+    location ~ \.php$ {
+#                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+        include fastcgi_params;
+        fastcgi_intercept_errors on;
+        fastcgi_pass user_service:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        #fastcgi_param SCRIPT_FILENAME /usr/share/nginx/html$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+
+#location ~ \.json$ {
+    #    root /var/www/html/public;
+    #    add_header Content-Type application/json;
+    #}
+
+}
+
+# Settings for simulation.ciptakode.biz.id
+server {
+    listen 443 ssl;
+    server_name simulation.ciptakode.biz.id;
+
+    #ssl_certificate /etc/ssl/certs/ciptakode_simulation.crt;
+    #ssl_certificate_key /etc/ssl/private/ciptakode_simulation.key;
+    ssl_certificate /etc/ssl/certs/ciptakode.crt;
+    ssl_certificate_key /etc/ssl/private/ciptakode.key;
+
+    root /var/www/html/public;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_intercept_errors on;
+        fastcgi_pass simulation_service:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+# Settings for game.ciptakode.biz.id
+server {
+    listen 443 ssl;
+    server_name game.ciptakode.biz.id;
+
+    #ssl_certificate /etc/ssl/certs/ciptakode_game.crt;
+    #ssl_certificate_key /etc/ssl/private/ciptakode_game.key;
+    ssl_certificate /etc/ssl/certs/ciptakode.crt;
+    ssl_certificate_key /etc/ssl/private/ciptakode.key;
+
+    root /var/www/html/public;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_intercept_errors on;
+        fastcgi_pass game_service:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+
+server {
+    listen 1290;
+    server_name storage.ciptakode.biz.id;
+    #        client_max_body_size 100M;
+    # Redirect HTTP to HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name storage.ciptakode.biz.id;
+
+    #ssl_certificate /etc/ssl/certs/ciptakode_storage.crt;
+    #ssl_certificate_key /etc/ssl/private/ciptakode_storage.key;
+    ssl_certificate /etc/ssl/certs/ciptakode.crt;
+    ssl_certificate_key /etc/ssl/private/ciptakode.key;
+
+    # Allow special characters in headers
+    ignore_invalid_headers off;
+    # Allow any size file to be uploaded.
+    # Set to a value such as 1000m; to restrict file size to a specific value
+    client_max_body_size 10m;
+    # Disable buffering
+    proxy_buffering off;
+    proxy_request_buffering off;
+
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_connect_timeout 300;
+        # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        chunked_transfer_encoding off;
+
+        proxy_pass http://minio_s3; # This uses the upstream directive definition to load balance
+    }
+
+    location /minio/ui/ {
+        rewrite ^/minio/ui/(.*) /$1 break;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-NginX-Proxy true;
+
+        # This is necessary to pass the correct IP to be hashed
+        real_ip_header X-Real-IP;
+
+        proxy_connect_timeout 300;
+
+        # To support websockets in MinIO versions released after January 2023
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        # Some environments may encounter CORS errors (Kubernetes + Nginx Ingress)
+        # Uncomment the following line to set the Origin request to an empty string
+        # proxy_set_header Origin '';
+
+        chunked_transfer_encoding off;
+
+        proxy_pass http://minio_console; # This uses the upstream directive definition to load balance
+    }
+}
+
+```
 
 1. **storage**
    - URL: [https://storage.ciptakode.biz.id/toefl/](https://storage.ciptakode.biz.id/toefl/)
